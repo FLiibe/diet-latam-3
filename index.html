@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Circular JSON Stringify Protection Guard -->
+    <script>
+      (function() {
+        var originalStringify = JSON.stringify;
+        JSON.stringify = function(value, replacer, space) {
+          var seen = [];
+          try {
+            return originalStringify(value, function(key, val) {
+              if (typeof val === "object" && val !== null) {
+                if (seen.indexOf(val) !== -1) {
+                  return "[Circular]";
+                }
+                seen.push(val);
+              }
+              if (replacer) {
+                return replacer(key, val);
+              }
+              return val;
+            }, space);
+          } catch (err) {
+            return "[Circular]";
+          }
+        };
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual de Dietoterapia China</title>
+    <!-- UTMify Pixel Script -->
+    <script>
+      window.pixelId = "6a480a6e50d141350b894a16";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+    <!-- UTMify Latest UTMS Script -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

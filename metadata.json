@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Guía de Dietoterapia China",
+  "description": "Página de venta y presentación de la guía completa de Dietoterapia China para profesionales de la salud, traducida al español de Latinoamérica.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
