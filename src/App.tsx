@@ -45,6 +45,7 @@ interface CurrencyInfo {
   bono3: string;
   bono4: string;
   bonosTotal: string;
+  upsell: string;
 }
 
 /**
@@ -61,21 +62,22 @@ const defaultCurrency: CurrencyInfo = {
   bono2: "10",
   bono3: "12",
   bono4: "15",
-  bonosTotal: "52"
+  bonosTotal: "52",
+  upsell: "7,50"
 };
 
 /**
  * Dictionary mapping regional ISO 3166-1 alpha-2 country codes to localized values.
  */
 const currencyMap: Record<string, CurrencyInfo> = {
-  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988" }, // Mexico
-  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000" }, // Colombia
-  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300" }, // Chile
-  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191" }, // Peru
-  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800" }, // Argentina
-  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294" }, // Brazil
-  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52" }, // Spain
-  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250" }, // Uruguay
+  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "142,50" }, // Mexico
+  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "30.000" }, // Colombia
+  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "7.000" }, // Chile
+  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "27,50" }, // Peru
+  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "6.750" }, // Argentina
+  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "42,50" }, // Brazil
+  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "7,50" }, // Spain
+  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "325" }, // Uruguay
   US: defaultCurrency,
 };
 
@@ -129,11 +131,7 @@ export default function App() {
 
   // Live countdown timer state (starting from 10 minutes, 51 seconds like the original screenshot)
   const [timeLeft, setTimeLeft] = useState(651); // 10 minutes * 60 + 51 = 651 seconds
-  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState<"form" | "success">("form");
-  const [selectedPlan, setSelectedPlan] = useState<"basico" | "completo">("completo");
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+  const [showUpsellModal, setShowUpsellModal] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -146,24 +144,6 @@ export default function App() {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
     return `${m}:${s < 10 ? "0" : ""}${s}`;
-  };
-
-  const handleCheckoutSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!userName || !userEmail) return;
-    setCheckoutStep("success");
-    if (selectedPlan === "basico") {
-      window.open("https://pay.hotmart.com/P106596280S", "_blank");
-    } else {
-      window.open("https://pay.hotmart.com/O106596188M", "_blank");
-    }
-  };
-
-  const handleResetCheckout = () => {
-    setShowCheckoutModal(false);
-    setCheckoutStep("form");
-    setUserName("");
-    setUserEmail("");
   };
 
   const scrollToSection = (id: string) => {
@@ -661,15 +641,15 @@ export default function App() {
 
               {/* Action Button */}
               <div className="mt-8 pt-6 border-t border-forest-light/20">
-                <a
-                  href="https://pay.hotmart.com/P106596280S"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-4 rounded-xl bg-[#09261a] hover:bg-[#113827] border border-forest-light/40 text-gold-medium font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] text-center"
+                <button
+                  onClick={() => {
+                    setShowUpsellModal(true);
+                  }}
+                  className="block w-full py-4 rounded-xl bg-[#09261a] hover:bg-[#113827] border border-forest-light/40 text-gold-medium font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] text-center cursor-pointer"
                   id="checkout-plan-basico"
                 >
                   Quiero el Plan Básico ➔
-                </a>
+                </button>
               </div>
 
             </div>
@@ -764,15 +744,15 @@ export default function App() {
 
               {/* Action Button */}
               <div className="mt-8 pt-6 border-t border-gray-100">
-                <a
-                  href="https://pay.hotmart.com/O106596188M"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full py-4.5 rounded-xl bg-[#113827] hover:bg-[#1b4b35] text-white font-extrabold text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/10 text-center"
+                <button
+                  onClick={() => {
+                    window.open("https://pay.hotmart.com/O106596188M?off=05w6pih2&checkoutMode=10", "_blank");
+                  }}
+                  className="block w-full py-4.5 rounded-xl bg-[#113827] hover:bg-[#1b4b35] text-white font-extrabold text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/10 text-center cursor-pointer"
                   id="checkout-plan-completo"
                 >
                   Quiero el Acceso Completo ➔
-                </a>
+                </button>
               </div>
 
             </div>
@@ -997,143 +977,101 @@ export default function App() {
       </footer>
 
 
-      {/* INTERACTIVE SIMULATED CHECKOUT MODAL */}
-      {showCheckoutModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-xs" id="checkout-modal">
-          <div className="bg-white rounded-2xl border border-sand-dark w-full max-w-md overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+      {/* ONE-TIME UPSELL POP-UP MODAL (HIGH-CONVERSION 50% OFF OFFER) */}
+      {showUpsellModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-xs" id="upsell-modal">
+          <div className="bg-white rounded-3xl border border-sand-dark w-full max-w-md overflow-y-auto max-h-[95vh] shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 text-center p-5 md:p-6 flex flex-col items-center">
             
-            {/* Header */}
-            <div className="bg-[#113827] text-white px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-gold-medium" />
-                <h4 className="font-serif text-base font-bold text-white tracking-wide">
-                  Confirmación de Acceso
-                </h4>
-              </div>
-              <button
-                onClick={handleResetCheckout}
-                className="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors"
-                id="close-modal-btn"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            {/* Top Close Button */}
+            <button
+              onClick={() => {
+                setShowUpsellModal(false);
+              }}
+              className="absolute top-3.5 right-3.5 text-gray-400 hover:text-gray-600 p-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              aria-label="Cerrar"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Pill Tag */}
+            <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-700 to-[#113827] text-[10px] font-bold tracking-[0.15em] text-white uppercase mb-3 shadow-xs select-none">
+              <span>🔥</span> OFERTA ESPECIAL EXCLUSIVA
             </div>
 
-            {/* Content */}
-            <div className="p-6">
-              {checkoutStep === "form" ? (
-                <form onSubmit={handleCheckoutSubmit} className="space-y-4">
-                  
-                  {/* Summary Box */}
-                  <div className="bg-sand-light p-4 rounded-xl border border-sand-dark/70 text-xs space-y-2">
-                    <div className="flex justify-between font-semibold text-forest-dark">
-                      <span>
-                        {selectedPlan === "basico"
-                          ? "Plan Básico — Dietoterapia:"
-                          : "Acceso Completo — Manual + 4 Bonos:"}
-                      </span>
-                      <span className="font-mono text-emerald-800 font-bold text-sm flex flex-col items-end">
-                        <span>
-                          {selectedPlan === "basico" 
-                            ? `${currency.symbol}${currency.basico} ${currency.code}` 
-                            : `${currency.symbol}${currency.completo} ${currency.code}`}
-                        </span>
-                        {currency.code !== "USD" && (
-                          <span className="text-[10px] text-gray-500 font-normal">
-                            (~ {selectedPlan === "basico" ? "$5" : "$15"} USD)
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                    <p className="text-gray-500 leading-relaxed font-sans text-[11px]">
-                      {selectedPlan === "basico"
-                        ? "Incluye el manual completo 'Dietoterapia China' en formato PDF."
-                        : "Incluye el manual completo (Acceso Vitalicio), actualizaciones gratis permanentes y los 4 bonos prácticos de consulta (tarjetas, recetario, calendario estacional y plantillas de anamnesis)."}
-                    </p>
-                  </div>
+            {/* Title */}
+            <h3 className="font-serif text-xl md:text-2xl text-forest-dark font-bold tracking-tight leading-snug px-2">
+              ¡Espera! Tenemos una Oportunidad Única Para Ti
+            </h3>
 
-                  {/* Name field */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="username-input" className="block text-xs font-semibold text-gray-700">
-                      Nombre Completo
-                    </label>
-                    <input
-                      id="username-input"
-                      type="text"
-                      required
-                      placeholder="Ej. María González"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-sand-dark text-sm focus:outline-hidden focus:ring-2 focus:ring-forest-medium/30 focus:border-forest-medium"
-                    />
-                  </div>
+            {/* Subtitle */}
+            <p className="text-xs text-gray-600 mt-2 max-w-sm px-2">
+              Haz upgrade a la <strong className="text-forest-dark font-bold">Oferta Completa</strong> ahora por solo{" "}
+              <span className="font-mono font-extrabold text-base text-emerald-800">{currency.symbol}{currency.upsell}</span>{" "}
+              <span className="text-xs text-gray-500 font-normal">(en vez de {currency.symbol}{currency.completo})</span>
+            </p>
 
-                  {/* Email field */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="useremail-input" className="block text-xs font-semibold text-gray-700">
-                      Correo Electrónico
-                    </label>
-                    <input
-                      id="useremail-input"
-                      type="email"
-                      required
-                      placeholder="Ej. maria@ejemplo.com"
-                      value={userEmail}
-                      onChange={(e) => setUserEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-sand-dark text-sm focus:outline-hidden focus:ring-2 focus:ring-forest-medium/30 focus:border-forest-medium"
-                    />
+            {/* Feature Card */}
+            <div className="w-full bg-sand-light border border-sand-dark/80 rounded-2xl p-4 my-3.5 text-left shadow-xs">
+              <div className="text-[11px] font-extrabold text-forest-dark uppercase tracking-wider mb-2 flex items-center gap-1 select-none">
+                <span className="text-gold-medium animate-pulse">✨</span> Lo que ganas en Completo:
+              </div>
+              
+              <div className="space-y-1.5 text-[11px] md:text-xs text-gray-700 leading-normal">
+                <div className="flex items-start gap-1.5">
+                  <span className="text-emerald-600 font-bold shrink-0">✔</span>
+                  <span>Manual Completo <strong>"Dietoterapia China"</strong> (Acceso Vitalicio)</span>
+                </div>
+                <div className="flex items-start gap-1.5">
+                  <span className="text-emerald-600 font-bold shrink-0">✔</span>
+                  <span>Actualizaciones <strong>100% gratis</strong> de por vida</span>
+                </div>
+                <div className="flex items-start gap-1.5">
+                  <span className="text-emerald-600 font-bold shrink-0">✔</span>
+                  <span>Soporte prioritario de dudas por correo electrónico</span>
+                </div>
+                
+                <div className="pt-1.5 border-t border-sand-dark/60 mt-1.5 space-y-1.5">
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 1:</strong> Tarjetas de Consulta Rápida (Síndromes y Alimentos)</span>
                   </div>
-
-                  <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 text-[11px] text-amber-800 flex gap-2 leading-relaxed">
-                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-amber-700" />
-                    <p>
-                      Asegúrate de ingresar un correo válido. El acceso al material digital en PDF se enviará automáticamente de inmediato.
-                    </p>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 2:</strong> Guía de Recetas de la MTC (PDF)</span>
                   </div>
-
-                  {/* Submit buttons */}
-                  <div className="pt-2 flex gap-3">
-                    <button
-                      type="button"
-                      onClick={handleResetCheckout}
-                      className="flex-1 py-2.5 rounded-lg border border-sand-dark text-gray-600 font-semibold text-xs text-center hover:bg-gray-50 transition-colors"
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      type="submit"
-                      className="flex-1 py-2.5 rounded-lg bg-[#113827] hover:bg-[#1b4b35] text-white font-semibold text-xs text-center transition-all shadow-md"
-                      id="submit-checkout-btn"
-                    >
-                      Confirmar Acceso
-                    </button>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 3:</strong> Calendario Estacional según los 5 Movimientos</span>
                   </div>
-
-                </form>
-              ) : (
-                <div className="text-center py-6 space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto shadow-sm">
-                    <Check className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h5 className="font-serif text-lg font-bold text-forest-dark">
-                      ¡Acceso Confirmado con Éxito!
-                    </h5>
-                    <p className="text-xs text-gray-500 mt-1 max-w-xs mx-auto leading-relaxed">
-                      Hola <strong>{userName}</strong>, hemos registrado tu solicitud para el <strong>{selectedPlan === "basico" ? "Plan Básico" : "Acceso Completo"}</strong>. Hemos enviado el manual y tus materiales descargables al correo <strong>{userEmail}</strong>.
-                    </p>
-                  </div>
-                  <div className="pt-4">
-                    <button
-                      onClick={handleResetCheckout}
-                      className="px-6 py-2 rounded-lg bg-[#113827] text-white font-semibold text-xs hover:bg-[#1b4b35] transition-all"
-                    >
-                      Entendido
-                    </button>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 4:</strong> Plantillas de Anamnesis y Fichas de Consulta</span>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
+
+            {/* Upgrade CTA Button */}
+            <button
+              onClick={() => {
+                setShowUpsellModal(false);
+                window.open("https://pay.hotmart.com/O106596188M?off=f2t2uhel&checkoutMode=10", "_blank");
+              }}
+              className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-emerald-700 to-[#c59f5b] hover:from-emerald-800 hover:to-[#dfc28d] text-white font-extrabold text-xs tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-emerald-900/10 text-center cursor-pointer"
+            >
+              ¡SÍ! QUIERO EL ACCESO COMPLETO POR {currency.symbol}{currency.upsell}
+            </button>
+
+            {/* Decline Link Button */}
+            <button
+              onClick={() => {
+                setShowUpsellModal(false);
+                window.open("https://pay.hotmart.com/P106596280S?checkoutMode=10", "_blank");
+              }}
+              className="w-full mt-2 py-2 rounded-xl border border-sand-dark/60 hover:bg-gray-50 text-gray-500 font-semibold text-xs tracking-wide transition-colors text-center cursor-pointer"
+            >
+              No, continuar con el Básico ({currency.symbol}{currency.basico})
+            </button>
 
           </div>
         </div>
