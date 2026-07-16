@@ -348,7 +348,7 @@ export default function App() {
                 <div className="flex items-start gap-2">
                   <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
                   <div>
-                    <strong className="text-red-950">Plan de Acción Instantáneo:</strong> Empieza mañana mismo sin perder tiempo planificando o calculando porciones.
+                    <strong className="text-red-950">Plan de Acción Instantáneo:</strong> Empieza mañana mismo sin perder tempo planificando o calculando porciones.
                   </div>
                 </div>
                 
@@ -468,7 +468,7 @@ export default function App() {
           </p>
 
           <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed text-center max-w-2xl mx-auto mb-6 md:mb-10 px-2">
-            Si bien el manual te enseña la valiosa teoría de la dietoterapia, este Protocolo es el <strong className="text-forest-dark">Siguiente Paso Natural</strong>: un plan de acción simplificado para aplicar de inmediato sin pensar en la planificación. Diseñado para ahorrarte tiempo, depurar toxinas y restaurar tu flujo digestivo en solo 3 semanas.
+            Este protocolo es una herramienta de doble propósito de alto nivel: es excelente tanto para <strong className="text-forest-dark">personas interesadas en aplicarlo en sí mismas</strong> para depurar toxinas y restaurar su flujo digestivo, como para <strong className="text-forest-dark">médicos, nutricionistas o terapeutas</strong> que desean entregar un protocolo clínico llave en mano a sus pacientes, ahorrándoles valiosas horas de planificación con un plan estructurado y 100% listo para usar en consulta.
           </p>
 
           {/* HERO GRID: VISUAL CARD AND HIGHLIGHTS */}
@@ -502,28 +502,28 @@ export default function App() {
                 <div className="flex items-start gap-2">
                   <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
                   <div>
-                    <strong className="text-forest-dark">Acelera tus Resultados:</strong> Salta la fase de diseño y planificación con un mapa estructurado día por día.
+                    <strong className="text-forest-dark">Doble Propósito Inteligente:</strong> Úsalo para ti o prescríbelo directamente a tus pacientes en tu práctica clínica privada.
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-2">
                   <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
                   <div>
-                    <strong className="text-forest-dark">Listo para Usar:</strong> Menús, decocciones, infusiones y dosis indicadas de manera clínica y directa.
+                    <strong className="text-forest-dark">Máximo Ahorro de Tiempo:</strong> Olvídate de planificar desde cero. Un médico o nutricionista obtiene un protocolo clínico ya armado, probado y listo para entregar.
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2">
                   <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
                   <div>
-                    <strong className="text-forest-dark">Garantía de Satisfacción Extendida:</strong> Sin riesgos. La garantía de tu producto principal cubre también este complemento.
+                    <strong className="text-forest-dark">Menús e Infusiones Clínicas:</strong> Cada día detallado con infusiones, decocciones, alimentos exactos y dosis terapéuticas.
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2">
                   <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
                   <div>
-                    <strong className="text-forest-dark">Práctico y Portable:</strong> Formato PDF interactivo optimizado para ver en tu teléfono, tablet o imprimir.
+                    <strong className="text-forest-dark">Garantía y Formato Portable:</strong> Documento PDF interactivo descargable de por vida cubierto por la misma garantía de tu compra principal.
                   </div>
                 </div>
               </div>
