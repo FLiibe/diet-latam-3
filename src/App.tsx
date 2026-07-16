@@ -67,7 +67,7 @@ const defaultCurrency: CurrencyInfo = {
   bono3: "12",
   bono4: "15",
   bonosTotal: "52",
-  upsell: "7,50",
+  upsell: "10",
   protocolo: "27",
   protocoloOriginal: "59",
   protocoloDownsell: "17"
@@ -77,14 +77,14 @@ const defaultCurrency: CurrencyInfo = {
  * Dictionary mapping regional ISO 3166-1 alpha-2 country codes to localized values.
  */
 const currencyMap: Record<string, CurrencyInfo> = {
-  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "142,50", protocolo: "513", protocoloOriginal: "1100", protocoloDownsell: "323" }, // Mexico
-  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "30.000", protocolo: "108.000", protocoloOriginal: "230.000", protocoloDownsell: "68.000" }, // Colombia
-  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "7.000", protocolo: "25.200", protocoloOriginal: "54.000", protocoloDownsell: "15.800" }, // Chile
-  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "27,50", protocolo: "100", protocoloOriginal: "215", protocoloDownsell: "63" }, // Peru
-  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "6.750", protocolo: "24.300", protocoloOriginal: "52.000", protocoloDownsell: "15.300" }, // Argentina
-  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "42,50", protocolo: "150", protocoloOriginal: "320", protocoloDownsell: "95" }, // Brazil
-  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "7,50", protocolo: "27", protocoloOriginal: "59", protocoloDownsell: "17" }, // Spain
-  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "325", protocolo: "1.170", protocoloOriginal: "2.500", protocoloDownsell: "730" }, // Uruguay
+  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "190", protocolo: "513", protocoloOriginal: "1100", protocoloDownsell: "323" }, // Mexico
+  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "40.000", protocolo: "108.000", protocoloOriginal: "230.000", protocoloDownsell: "68.000" }, // Colombia
+  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "9.300", protocolo: "25.200", protocoloOriginal: "54.000", protocoloDownsell: "15.800" }, // Chile
+  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "37", protocolo: "100", protocoloOriginal: "215", protocoloDownsell: "63" }, // Peru
+  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "9.000", protocolo: "24.300", protocoloOriginal: "52.000", protocoloDownsell: "15.300" }, // Argentina
+  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "56", protocolo: "150", protocoloOriginal: "320", protocoloDownsell: "95" }, // Brazil
+  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "10", protocolo: "27", protocoloOriginal: "59", protocoloDownsell: "17" }, // Spain
+  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "430", protocolo: "1.170", protocoloOriginal: "2.500", protocoloDownsell: "730" }, // Uruguay
   US: defaultCurrency,
 };
 
@@ -992,18 +992,18 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch max-w-4xl mx-auto px-2 md:px-0" id="pricing-plans-grid">
             
             {/* PLAN BÁSICO CARD */}
-            <div className="bg-[#0c2a1d] rounded-3xl border border-forest-light/40 p-6 md:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-forest-light/70 text-left relative" id="plan-basico-card">
+            <div className="bg-white text-gray-800 rounded-3xl border border-gray-200 p-6 md:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:border-gray-300 text-left relative" id="plan-basico-card">
               
               <div>
                 {/* Header Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#071c14] border border-forest-light/25 text-[10px] tracking-widest font-bold text-gold-medium uppercase mb-6">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-[10px] tracking-widest font-bold text-gray-700 uppercase mb-6">
                   <span>⭐</span> PLAN BÁSICO
                 </div>
 
                 {/* Prices */}
                 <div className="mb-6 flex flex-col items-start" id="price-stack-basico">
                   {/* Badge */}
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#0d3422] text-emerald-400 text-[10px] font-bold tracking-wider mb-2 uppercase border border-emerald-500/20">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold tracking-wider mb-2 uppercase border border-emerald-200">
                     Ahorras más del 80%
                   </div>
                   {/* Original Price */}
@@ -1012,45 +1012,49 @@ export default function App() {
                   </span>
                   {/* Current Price */}
                   <div className="flex items-baseline gap-2">
-                    <span className="text-5xl md:text-6xl font-serif font-black tracking-tight text-white leading-none">
+                    <span className="text-5xl md:text-6xl font-serif font-black tracking-tight text-[#113827] leading-none">
                       {currency.symbol}{currency.basico}
                     </span>
                     {currency.code !== "USD" && (
-                      <span className="text-sm font-sans text-sand-dark/60">
+                      <span className="text-sm font-sans text-gray-500">
                         (~ $5 USD)
                       </span>
                     )}
                   </div>
                   {/* Bottom Label */}
-                  <span className="text-xs text-sand-dark/70 mt-2 font-medium tracking-wide">
+                  <span className="text-xs text-gray-500 mt-2 font-medium tracking-wide">
                     pago único ({currency.code})
                   </span>
                 </div>
 
                 {/* Features List */}
-                <div className="space-y-4 pt-4 border-t border-forest-light/30">
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-sand-light">
-                    <span className="text-emerald-500 shrink-0 mt-0.5">✔</span>
+                <div className="space-y-4 pt-4 border-t border-gray-100">
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
                     <span>Manual Completo <strong>"Dietoterapia China"</strong></span>
                   </div>
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-sand-dark/60 line-through select-none">
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-400 line-through select-none">
                     <span className="text-red-500 shrink-0 mt-0.5">❌</span>
                     <span>Sin bonos exclusivos incluidos en el paquete</span>
                   </div>
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-sand-dark/60 line-through select-none">
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-400 line-through select-none">
                     <span className="text-red-500 shrink-0 mt-0.5">❌</span>
                     <span>Sin actualizaciones futuras gratuitas</span>
+                  </div>
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-400 line-through select-none">
+                    <span className="text-red-500 shrink-0 mt-0.5">❌</span>
+                    <span>Sin soporte prioritario de dudas por correo electrónico</span>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <div className="mt-8 pt-6 border-t border-forest-light/20">
+              <div className="mt-8 pt-6 border-t border-gray-100">
                 <button
                   onClick={() => {
                     setShowUpsellModal(true);
                   }}
-                  className="block w-full py-4 rounded-xl bg-[#09261a] hover:bg-[#113827] border border-forest-light/40 text-gold-medium font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] text-center cursor-pointer"
+                  className="block w-full py-4 rounded-xl bg-white hover:bg-emerald-50/40 border-2 border-[#113827] text-[#113827] font-extrabold text-sm tracking-wider uppercase transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] text-center cursor-pointer shadow-sm"
                   id="checkout-plan-basico"
                 >
                   Quiero el Plan Básico ➔
@@ -1118,32 +1122,31 @@ export default function App() {
                     <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
                     <span>Soporte prioritario de dudas por correo electrónico</span>
                   </div>
+                </div>
 
-                  {/* Inside card box for bonuses */}
-                  <div className="bg-emerald-50/60 rounded-2xl border border-emerald-100 p-4 mt-5 text-left">
-                    <div className="text-xs font-extrabold text-emerald-900 uppercase tracking-wide mb-3 flex items-center gap-1">
-                      <span>🎁</span> 4 BONOS EXCLUSIVOS ({currency.symbol}{currency.bonosTotal} {currency.code}) — 100% GRATIS:
+                {/* Inside card box for bonuses (moved below the list) */}
+                <div className="bg-emerald-50/60 rounded-2xl border border-emerald-100 p-4 mt-5 text-left">
+                  <div className="text-xs font-extrabold text-emerald-900 uppercase tracking-wide mb-3 flex items-center gap-1">
+                    <span>🎁</span> 4 BONOS EXCLUSIVOS ({currency.symbol}{currency.bonosTotal} {currency.code}) — 100% GRATIS:
+                  </div>
+                  <div className="space-y-2.5 text-[11px] md:text-xs text-gray-700">
+                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
+                      <span className="text-emerald-600 shrink-0">✓</span>
+                      <span>1. Tarjetas de Consulta Rápida (Síndromes y Alimentos)</span>
                     </div>
-                    <div className="space-y-2.5 text-[11px] md:text-xs text-gray-700">
-                      <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                        <span className="text-emerald-600 shrink-0">✓</span>
-                        <span>1. Tarjetas de Consulta Rápida (Síndromes y Alimentos)</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                        <span className="text-emerald-600 shrink-0">✓</span>
-                        <span>2. Guía de Recetas de la Medicina Tradicional China</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                        <span className="text-emerald-600 shrink-0">✓</span>
-                        <span>3. Calendario Estacional según los Cinco Movimientos</span>
-                      </div>
-                      <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                        <span className="text-emerald-600 shrink-0">✓</span>
-                        <span>4. Plantillas de Anamnesis y Seguimiento Nutricional</span>
-                      </div>
+                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
+                      <span className="text-emerald-600 shrink-0">✓</span>
+                      <span>2. Guía de Recetas de la Medicina Tradicional China</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
+                      <span className="text-emerald-600 shrink-0">✓</span>
+                      <span>3. Calendario Estacional según los Cinco Movimientos</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
+                      <span className="text-emerald-600 shrink-0">✓</span>
+                      <span>4. Plantillas de Anamnesis y Seguimiento Nutricional</span>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -1412,7 +1415,11 @@ export default function App() {
             <p className="text-xs text-gray-600 mt-2 max-w-sm px-2">
               Haz upgrade a la <strong className="text-forest-dark font-bold">Oferta Completa</strong> ahora por solo{" "}
               <span className="font-mono font-extrabold text-base text-emerald-800">{currency.symbol}{currency.upsell}</span>{" "}
-              <span className="text-xs text-gray-500 font-normal">(en vez de {currency.symbol}{currency.completo})</span>
+              {currency.code !== "USD" && (
+                <span className="text-xs text-emerald-800 font-bold">
+                  (~ $10 USD)
+                </span>
+              )}
             </p>
 
             {/* Feature Card */}
