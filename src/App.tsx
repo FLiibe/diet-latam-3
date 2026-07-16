@@ -22,6 +22,7 @@ import AcuLogo from "./components/AcuLogo";
 import MovementTabs from "./components/MovementTabs";
 import WhatsAppChat from "./components/WhatsAppChat";
 import FAQAccordion from "./components/FAQAccordion";
+import HotmartSalesFunnel from "./components/HotmartSalesFunnel";
 
 // Import generated book bundle image
 const bundleImg = "https://i.ibb.co/SwYFdkpW/Chat-GPT-Image-3-lug-2026-10-57-05.png";
@@ -46,6 +47,9 @@ interface CurrencyInfo {
   bono4: string;
   bonosTotal: string;
   upsell: string;
+  protocolo: string;
+  protocoloOriginal: string;
+  protocoloDownsell: string;
 }
 
 /**
@@ -63,21 +67,24 @@ const defaultCurrency: CurrencyInfo = {
   bono3: "12",
   bono4: "15",
   bonosTotal: "52",
-  upsell: "7,50"
+  upsell: "7,50",
+  protocolo: "27",
+  protocoloOriginal: "59",
+  protocoloDownsell: "17"
 };
 
 /**
  * Dictionary mapping regional ISO 3166-1 alpha-2 country codes to localized values.
  */
 const currencyMap: Record<string, CurrencyInfo> = {
-  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "142,50" }, // Mexico
-  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "30.000" }, // Colombia
-  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "7.000" }, // Chile
-  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "27,50" }, // Peru
-  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "6.750" }, // Argentina
-  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "42,50" }, // Brazil
-  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "7,50" }, // Spain
-  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "325" }, // Uruguay
+  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "142,50", protocolo: "513", protocoloOriginal: "1100", protocoloDownsell: "323" }, // Mexico
+  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "30.000", protocolo: "108.000", protocoloOriginal: "230.000", protocoloDownsell: "68.000" }, // Colombia
+  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "7.000", protocolo: "25.200", protocoloOriginal: "54.000", protocoloDownsell: "15.800" }, // Chile
+  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "27,50", protocolo: "100", protocoloOriginal: "215", protocoloDownsell: "63" }, // Peru
+  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "6.750", protocolo: "24.300", protocoloOriginal: "52.000", protocoloDownsell: "15.300" }, // Argentina
+  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "42,50", protocolo: "150", protocoloOriginal: "320", protocoloDownsell: "95" }, // Brazil
+  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "7,50", protocolo: "27", protocoloOriginal: "59", protocoloDownsell: "17" }, // Spain
+  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "325", protocolo: "1.170", protocoloOriginal: "2.500", protocoloDownsell: "730" }, // Uruguay
   US: defaultCurrency,
 };
 
@@ -104,6 +111,17 @@ const getCountryByTimezone = (): string => {
 export default function App() {
   // --- STATE DECLARATIONS ---
   
+  // Simple client-side routing state to support the "/upsell" page request
+  const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   // Localized currency and pricing configuration
   const [currency, setCurrency] = useState<CurrencyInfo>(() => {
     const initialCountry = getCountryByTimezone();
@@ -152,6 +170,334 @@ export default function App() {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  if (currentPath === "/gracias") {
+    return (
+      <div className="min-h-screen bg-sand-light antialiased font-sans text-gray-800 flex flex-col justify-between" id="gracias-page">
+        
+        {/* HEADER BAR */}
+        <div className="bg-[#09261a] text-white py-4 px-6 text-center shadow-md">
+          <AcuLogo size="sm" />
+        </div>
+
+        {/* MAIN BODY CONTAINER */}
+        <div className="max-w-xl mx-auto px-6 py-12 flex-1 flex flex-col items-center justify-center text-center">
+          
+          {/* SUCCESS ANIMATED ICON */}
+          <div className="w-20 h-20 rounded-full bg-emerald-50 border-4 border-emerald-500 flex items-center justify-center mb-8 shadow-lg animate-bounce">
+            <ShieldCheck className="w-12 h-12 text-emerald-600" />
+          </div>
+
+          {/* HEADING */}
+          <h1 className="font-serif text-3xl sm:text-4xl text-emerald-800 font-bold mb-4 tracking-tight">
+            ¡Gracias por tu compra!
+          </h1>
+          
+          <p className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed">
+            Hemos procesado tu pedido de forma segura. En los próximos minutos recibirás un correo electrónico con los enlaces de descarga y las instrucciones de acceso para todo tu material.
+          </p>
+
+        </div>
+
+        {/* FOOTER */}
+        <footer className="bg-[#09261a] text-gray-400 py-4 text-center text-xs border-t border-emerald-950">
+          <p>© {new Date().getFullYear()} Acupuntura Clínica. Todos os derechos reservados.</p>
+        </footer>
+
+      </div>
+    );
+  }
+
+  if (currentPath === "/downsell") {
+    return (
+      <div className="min-h-screen bg-rose-50/20 antialiased font-sans text-gray-800 flex flex-col justify-between" id="downsell-landing-page">
+        
+        {/* TOP EXTREME URGENCY BANNER */}
+        <div className="bg-red-950 text-white text-[11px] md:text-xs py-2.5 px-4 text-center font-mono flex items-center justify-center gap-2 select-none shadow-sm sticky top-0 z-40">
+          <span className="inline-block animate-ping text-red-500 font-bold">🚨</span>
+          <span className="font-sans font-bold text-red-200 tracking-wide uppercase">
+            Última oportunidad: Tu descuento del 50% se desactivará para siempre al salir
+          </span>
+          <span className="mx-1">•</span>
+          <span className="font-bold text-red-400 tracking-widest bg-black/40 px-2 py-0.5 rounded">
+            {formatTime(timeLeft)}
+          </span>
+        </div>
+
+        {/* CONTENT CONTAINER */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12 flex-1 flex flex-col items-center justify-center">
+          
+          {/* LOGO */}
+          <div className="mb-4 md:mb-6">
+            <AcuLogo size="sm" />
+          </div>
+
+          {/* CRITICAL ATTENTION NOTICE */}
+          <div className="w-full max-w-3xl bg-amber-50/95 border-2 border-amber-300 rounded-2xl p-4 md:p-6 text-center mb-8 shadow-md animate-pulse">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-amber-950">
+              <span className="text-2xl">⚠️</span>
+              <p className="font-sans text-xs sm:text-sm font-black text-amber-950 leading-snug uppercase tracking-wide">
+                ¡ESPERA! ESTA ES TU ÚLTIMA Y ABSOLUTA OPORTUNIDAD PARA AHORRAR EL 50%
+              </p>
+            </div>
+            <div className="mt-2 text-xs text-amber-900 font-medium">
+              Si cierras esta pestaña, sales de la página o regresas al inicio, perderás esta oferta para siempre. No se te volverá a presentar en ningún otro lugar bajo este precio promocional.
+            </div>
+          </div>
+
+          {/* MAIN TITLES */}
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-5xl text-red-800 text-center tracking-tight leading-tight mb-2 font-black px-2">
+            ¿Estás Seguro de Dejar Pasar Esto?
+          </h1>
+          <p className="text-gold-dark italic font-semibold text-base sm:text-lg md:text-xl text-center mb-4 md:mb-6">
+            Tu Plan de Acción Diario Listo para Usar — Último Intento de Descuento
+          </p>
+
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed text-center max-w-2xl mx-auto mb-6 md:mb-10 px-2">
+            No limites tus conocimientos a la pura teoría del manual. Consigue el <strong className="text-red-700">Protocolo de 21 Días</strong> ahora mismo para aplicar de inmediato sin esfuerzo mental de planificación. Esta oferta exclusiva de un solo clic nunca volverá a estar disponible para ti.
+          </p>
+
+          {/* HERO GRID: VISUAL CARD AND HIGHLIGHTS */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center w-full max-w-3xl bg-white rounded-3xl border-2 border-red-100 p-4 sm:p-6 md:p-8 shadow-2xl mb-6 md:mb-10 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500"></div>
+            
+            {/* Visual Book Cover / Badge (Left side on desktop) */}
+            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2">
+              <div className="relative group">
+                {/* High quality 3D Book Graphic */}
+                <img 
+                  src="https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png" 
+                  alt="Protocolo de 21 Días" 
+                  className="w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-transform duration-300 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+
+                {/* 50% OFF Stamp */}
+                <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
+                  ¡50% OFF!
+                </div>
+              </div>
+            </div>
+
+            {/* Core Benefits List (Right side on desktop) */}
+            <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
+              <h3 className="font-serif text-base sm:text-lg font-bold text-red-800 flex items-center gap-1.5 uppercase tracking-wide">
+                ⚠️ ¿POR QUÉ NO DEBES DEJARLO IR?
+              </h3>
+              
+              <div className="space-y-2.5 sm:space-y-3 text-xs text-gray-600">
+                <div className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-red-950">Plan de Acción Instantáneo:</strong> Empieza mañana mismo sin perder tiempo planificando o calculando porciones.
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-red-950">Máximo Ahorro de Tiempo:</strong> Salta directo a la fase práctica de la dietoterapia clínica y obtén resultados más rápidos.
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-red-950">Garantía de Devolución Extendida:</strong> Sin riesgos. Si el manual no es lo que esperabas, te reembolsamos ambos productos al 100%.
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-red-950">Acceso Vitalicio Seguro:</strong> Formato digital descargable para siempre en tu móvil, tablet u ordenador.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* PRICE DROP ALERT BANNER */}
+          <div className="w-full max-w-md bg-red-50 border-2 border-red-200 rounded-3xl p-4 sm:p-5 text-center mb-6 shadow-md">
+            <p className="text-[10px] sm:text-xs text-red-700 uppercase tracking-widest font-extrabold mb-1">
+              💥 DESCUENTO EXTRA DE ÚLTIMO MINUTO 💥
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-sm sm:text-base text-gray-400 line-through font-semibold">
+                {currency.symbol}{currency.protocolo} {currency.code}
+              </span>
+              <span className="text-2xl sm:text-3xl font-mono font-black text-red-700 flex items-center gap-1.5 animate-pulse">
+                <span>{currency.symbol}{currency.protocoloDownsell} {currency.code}</span>
+              </span>
+            </div>
+            <p className="text-[11px] text-red-800 mt-1.5 font-semibold leading-relaxed">
+              Hemos reducido el precio del protocolo de {currency.symbol}{currency.protocolo} a solo <span className="underline font-black">{currency.symbol}{currency.protocoloDownsell}</span>. ¡Última oportunidad!
+            </p>
+          </div>
+
+          {/* HOTMART - Sales Funnel Widget */}
+          <HotmartSalesFunnel />
+
+          {/* Secure purchase icons */}
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-6 text-gray-400 text-[10px] sm:text-[11px] md:text-xs">
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-red-600" /> Compra 100% Segura
+            </span>
+            <span className="hidden sm:inline text-gray-300">•</span>
+            <span className="flex items-center gap-1">
+              <Download className="w-3.5 h-3.5 text-red-600" /> Acceso Instantáneo
+            </span>
+          </div>
+
+
+
+        </div>
+
+        {/* COMPACT FOOTER */}
+        <footer className="bg-red-950 text-gray-400 py-4 sm:py-6 text-center text-[11px] border-t border-red-900/30 w-full mt-auto">
+          <p>© {new Date().getFullYear()} Acupuntura Clínica. Todos los derechos reservados.</p>
+        </footer>
+
+      </div>
+    );
+  }
+
+  if (currentPath === "/upsell") {
+    return (
+      <div className="min-h-screen bg-sand-light antialiased font-sans text-gray-800 flex flex-col justify-between" id="upsell-landing-page">
+        
+        {/* TOP URGENT BANNER */}
+        <div className="bg-[#09261a] text-white text-[11px] md:text-xs py-2.5 px-4 text-center font-mono flex items-center justify-center gap-2 select-none shadow-sm sticky top-0 z-40">
+          <span className="inline-block animate-pulse text-gold-medium font-bold">⚠️</span>
+          <span className="font-sans font-medium tracking-wide">
+            Oportunidad Única: Esta oferta complementaria solo está disponible aquí
+          </span>
+          <span className="mx-1">•</span>
+          <span className="font-bold text-gold-medium tracking-widest bg-black/30 px-2 py-0.5 rounded">
+            {formatTime(timeLeft)}
+          </span>
+        </div>
+
+        {/* CONTENT CONTAINER */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12 flex-1 flex flex-col items-center justify-center">
+          
+          {/* LOGO */}
+          <div className="mb-4 md:mb-6">
+            <AcuLogo size="sm" />
+          </div>
+
+          {/* THANK YOU / SUCCESS NOTICE */}
+          <div className="w-full max-w-3xl bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 md:p-5 text-center mb-8 shadow-xs animate-in fade-in duration-300">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-emerald-800">
+              <span className="text-xl sm:text-2xl">🎉</span>
+              <p className="font-sans text-xs sm:text-sm font-semibold text-emerald-900 leading-snug">
+                ¡Gracias por tu compra! Tu pedido del manual principal ha sido procesado de forma segura y se está enviando a tu correo ahora mismo.
+              </p>
+            </div>
+            <div className="mt-2 text-[10px] sm:text-xs text-emerald-700/80 font-medium">
+              ⚠️ ¡Espera! No cierres ni recargues esta página. Te presentamos una adición exclusiva recomendada a continuación:
+            </div>
+          </div>
+
+          {/* MAIN TITLES */}
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-5xl text-forest-dark text-center tracking-tight leading-tight mb-2 font-bold px-2">
+            Protocolo de 21 Días
+          </h1>
+          <p className="text-gold-dark italic font-semibold text-base sm:text-lg md:text-xl text-center mb-4 md:mb-6">
+            Tu Plan de Acción Diario Listo para Usar
+          </p>
+
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed text-center max-w-2xl mx-auto mb-6 md:mb-10 px-2">
+            Si bien el manual te enseña la valiosa teoría de la dietoterapia, este Protocolo es el <strong className="text-forest-dark">Siguiente Paso Natural</strong>: un plan de acción simplificado para aplicar de inmediato sin pensar en la planificación. Diseñado para ahorrarte tiempo, depurar toxinas y restaurar tu flujo digestivo en solo 3 semanas.
+          </p>
+
+          {/* HERO GRID: VISUAL CARD AND HIGHLIGHTS */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center w-full max-w-3xl bg-white rounded-3xl border border-sand-dark p-4 sm:p-6 md:p-8 shadow-xl mb-6 md:mb-10">
+            
+            {/* Visual Book Cover / Badge (Left side on desktop) */}
+            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2">
+              <div className="relative group">
+                {/* High quality 3D Book Graphic */}
+                <img 
+                  src="https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png" 
+                  alt="Protocolo de 21 Días" 
+                  className="w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-transform duration-300 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+
+                {/* 50% OFF Stamp */}
+                <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
+                  ¡50% OFF!
+                </div>
+              </div>
+            </div>
+
+            {/* Core Benefits List (Right side on desktop) */}
+            <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
+              <h3 className="font-serif text-base sm:text-lg font-bold text-forest-dark flex items-center gap-1.5">
+                ¿Por qué agregar este protocolo?
+              </h3>
+              
+              <div className="space-y-2.5 sm:space-y-3 text-xs text-gray-600">
+                <div className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-forest-dark">Acelera tus Resultados:</strong> Salta la fase de diseño y planificación con un mapa estructurado día por día.
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-forest-dark">Listo para Usar:</strong> Menús, decocciones, infusiones y dosis indicadas de manera clínica y directa.
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-forest-dark">Garantía de Satisfacción Extendida:</strong> Sin riesgos. La garantía de tu producto principal cubre también este complemento.
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
+                  <div>
+                    <strong className="text-forest-dark">Práctico y Portable:</strong> Formato PDF interactivo optimizado para ver en tu teléfono, tablet o imprimir.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* HOTMART - Sales Funnel Widget */}
+          <HotmartSalesFunnel />
+
+          {/* Secure purchase icons */}
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mt-6 text-gray-400 text-[10px] sm:text-[11px] md:text-xs">
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Compra 100% Segura
+            </span>
+            <span className="hidden sm:inline text-gray-300">•</span>
+            <span className="flex items-center gap-1">
+              <Download className="w-3.5 h-3.5 text-emerald-600" /> Descarga Inmediata
+            </span>
+          </div>
+
+
+
+        </div>
+
+        {/* COMPACT FOOTER */}
+        <footer className="bg-forest-dark text-gray-400 py-4 sm:py-6 text-center text-[11px] border-t border-forest-light/20 w-full mt-auto">
+          <p>© {new Date().getFullYear()} Acupuntura Clínica. Todos los derechos reservados.</p>
+        </footer>
+
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-sand-light antialiased font-sans text-gray-800">
