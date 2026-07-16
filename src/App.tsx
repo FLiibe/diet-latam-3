@@ -111,16 +111,75 @@ const getCountryByTimezone = (): string => {
 export default function App() {
   // --- STATE DECLARATIONS ---
   
-  // Simple client-side routing state to support the "/upsell" page request
-  const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
+  // Simple client-side routing state to support the "/upsell" page request with direct access prevention
+  const [currentPath, setCurrentPath] = useState(() => {
+    const path = window.location.pathname;
+    
+    // Check if they are accessing a protected path on initial render
+    if (path === "/upsell" || path === "/downsell" || path === "/gracias") {
+      const hasActiveSession = sessionStorage.getItem("funnel_session") === "active";
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasHotmartParams = 
+        urlParams.has("transaction") || 
+        urlParams.has("hottok") || 
+        urlParams.has("email") || 
+        urlParams.has("status") ||
+        urlParams.has("payment_type") ||
+        urlParams.has("billet_url") ||
+        urlParams.has("billet_barcode");
+      const ref = document.referrer ? document.referrer.toLowerCase() : "";
+      const isFromHotmart = ref.includes("hotmart");
+
+      if (!hasActiveSession && !hasHotmartParams && !isFromHotmart) {
+        // Direct access is unauthorized, redirect silently to homepage
+        window.history.replaceState({}, "", "/");
+        return "/";
+      }
+    } else if (path === "/" || path === "") {
+      // Set active session flag when they hit the landing page
+      sessionStorage.setItem("funnel_session", "active");
+    }
+    return path;
+  });
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      const path = window.location.pathname;
+      // Also protect on back/forward navigation
+      if (path === "/upsell" || path === "/downsell" || path === "/gracias") {
+        const hasActiveSession = sessionStorage.getItem("funnel_session") === "active";
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasHotmartParams = 
+          urlParams.has("transaction") || 
+          urlParams.has("hottok") || 
+          urlParams.has("email") || 
+          urlParams.has("status") ||
+          urlParams.has("payment_type") ||
+          urlParams.has("billet_url") ||
+          urlParams.has("billet_barcode");
+        const ref = document.referrer ? document.referrer.toLowerCase() : "";
+        const isFromHotmart = ref.includes("hotmart");
+
+        if (!hasActiveSession && !hasHotmartParams && !isFromHotmart) {
+          window.history.replaceState({}, "", "/");
+          setCurrentPath("/");
+          return;
+        }
+      } else if (path === "/" || path === "") {
+        sessionStorage.setItem("funnel_session", "active");
+      }
+      setCurrentPath(path);
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  // Also listen to currentPath state changes to set the funnel session active when hitting the main route
+  useEffect(() => {
+    if (currentPath === "/" || currentPath === "") {
+      sessionStorage.setItem("funnel_session", "active");
+    }
+  }, [currentPath]);
 
   // Localized currency and pricing configuration
   const [currency, setCurrency] = useState<CurrencyInfo>(() => {
