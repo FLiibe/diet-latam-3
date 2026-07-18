@@ -209,6 +209,32 @@ export default function App() {
   // Live countdown timer state (starting from 10 minutes, 51 seconds like the original screenshot)
   const [timeLeft, setTimeLeft] = useState(651); // 10 minutes * 60 + 51 = 651 seconds
   const [showUpsellModal, setShowUpsellModal] = useState(false);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+
+  useEffect(() => {
+    // High-priority preload link for the hero image to make it load much faster on mobile phones
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = bundleImg;
+    document.head.appendChild(link);
+
+    const img = new Image();
+    img.src = bundleImg;
+    if (img.complete) {
+      setHeroImageLoaded(true);
+    } else {
+      img.onload = () => {
+        setHeroImageLoaded(true);
+      };
+    }
+
+    return () => {
+      try {
+        document.head.removeChild(link);
+      } catch (e) {}
+    };
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -600,12 +626,20 @@ export default function App() {
           </p>
 
           {/* Main Book Mockup Image */}
-          <div className="relative max-w-xl mx-auto mb-10 group rounded-2xl overflow-hidden shadow-2xl border-4 border-white transition-transform duration-500 hover:scale-[1.01]" id="book-mockup-wrapper">
+          <div className="relative max-w-xl mx-auto mb-10 group rounded-2xl overflow-hidden shadow-2xl border-4 border-white transition-transform duration-500 hover:scale-[1.01] min-h-[250px] sm:min-h-[400px] flex items-center justify-center bg-sand-light/50" id="book-mockup-wrapper">
+            {/* Elegant Skeleton Loader */}
+            {!heroImageLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-sand-light/40 animate-pulse">
+                <div className="w-10 h-10 rounded-full border-4 border-forest-light border-t-gold-medium animate-spin mb-3"></div>
+                <span className="text-xs font-mono text-forest-dark tracking-wider">Cargando material interactivo...</span>
+              </div>
+            )}
             <img
               src={bundleImg}
               alt="Manual Completo de Dietoterapia China y Bonos de consulta"
-              className="w-full h-auto object-cover"
+              className={`w-full h-auto object-cover transition-opacity duration-700 ease-in-out ${heroImageLoaded ? "opacity-100" : "opacity-0"}`}
               referrerPolicy="no-referrer"
+              onLoad={() => setHeroImageLoaded(true)}
             />
             {/* Soft decorative shadow overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
