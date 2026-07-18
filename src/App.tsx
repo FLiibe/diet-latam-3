@@ -25,7 +25,7 @@ import FAQAccordion from "./components/FAQAccordion";
 import HotmartSalesFunnel from "./components/HotmartSalesFunnel";
 
 // Import generated book bundle image
-const bundleImg = "https://i.ibb.co/SwYFdkpW/Chat-GPT-Image-3-lug-2026-10-57-05.png";
+const bundleImg = "https://i.ibb.co/KxVLBT9R/Chat-GPT-Image-18-lug-2026-17-18-49.png";
 
 // ============================================================================
 // REGION: GEOLOCATION & DYNAMIC CURRENCY ENGINE
@@ -590,15 +590,13 @@ export default function App() {
 
           {/* Main Display Heading */}
           <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-forest-dark tracking-tight leading-[1.15] mb-6 font-medium">
-            Aprende a aplicar la{" "}
+            Atiende a tus pacientes con más seguridad usando la{" "}
             <span className="text-gold-dark italic font-semibold">Dietoterapia China</span>
-            <br />
-            para tratar a tus pacientes
           </h2>
 
           {/* Subtext */}
-          <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10">
-            Obtén acceso a pautas clínicas prácticas para tratar e indicar alimentos de acuerdo con el diagnóstico energético y potenciar al máximo los resultados de tus consultantes de forma natural.
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-3xl mx-auto mb-10">
+            Obtén un manual completo y listo para imprimir, con protocolos, alimentos recomendados y herramientas prácticas para indicar con mayor seguridad según el diagnóstico energético.
           </p>
 
           {/* Main Book Mockup Image */}
@@ -619,8 +617,8 @@ export default function App() {
             className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#113827] hover:bg-[#1a4b35] text-white font-semibold text-sm md:text-base tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-forest-dark/20 cursor-pointer group"
             id="hero-cta-btn"
           >
-            Quiero obtener acceso ahora
-            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            QUIERO ACCEDER AHORA
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">➔</span>
           </button>
 
           {/* Trust indicators */}
@@ -662,21 +660,21 @@ export default function App() {
             <div className="flex gap-3.5 p-5 rounded-xl bg-[#09261a]/60 border border-forest-light hover:border-gold-medium/50 transition-colors duration-300">
               <Check className="w-5 h-5 text-gold-medium shrink-0 mt-0.5" />
               <p className="text-xs md:text-sm text-sand-light leading-relaxed">
-                Ya has estudiado Medicina China, pero aún sientes inseguridad para orientar a tus pacientes en su alimentación en el día a día.
+                Ya has estudiado Medicina China, pero aún sientes inseguridad para orientar a tus pacientes.
               </p>
             </div>
 
             <div className="flex gap-3.5 p-5 rounded-xl bg-[#09261a]/60 border border-forest-light hover:border-gold-medium/50 transition-colors duration-300">
               <Check className="w-5 h-5 text-gold-medium shrink-0 mt-0.5" />
               <p className="text-xs md:text-sm text-sand-light leading-relaxed">
-                No tienes claro exactamente qué alimentos específicos indicar para cada síndrome energético o desequilibrio orgánico.
+                No tienes claro qué alimentos indicar para cada síndrome energético.
               </p>
             </div>
 
             <div className="flex gap-3.5 p-5 rounded-xl bg-[#09261a]/60 border border-forest-light hover:border-gold-medium/50 transition-colors duration-300">
               <Check className="w-5 h-5 text-gold-medium shrink-0 mt-0.5" />
               <p className="text-xs md:text-sm text-sand-light leading-relaxed">
-                Te cuesta trabajo traducir la teoría abstracta en pautas alimentarias y direccionamientos clínicos sencillos y objetivos.
+                Te cuesta transformar la teoría abstracta en pautas prácticas y sencillas de seguir.
               </p>
             </div>
 
@@ -724,8 +722,8 @@ export default function App() {
               className="inline-flex items-center justify-center px-8 py-4.5 rounded-full bg-[#c59f5b] hover:bg-[#dfc28d] text-forest-dark font-bold text-xs md:text-sm tracking-wide uppercase transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
               id="pain-points-cta-btn"
             >
-              Quiero acceder ahora
-              <span className="ml-2 font-mono">→</span>
+              QUIERO ACCEDER AHORA
+              <span className="ml-2 font-mono">➔</span>
             </button>
           </div>
         </div>
@@ -772,7 +770,7 @@ export default function App() {
                   Fundamentos de la Dietoterapia China
                 </h4>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Comprende de forma clara y lógica los principios bioenergéticos que rigen la acción terapéutica de los alimentos comunes en el cuerpo humano.
+                  Principios bioenergéticos simplificados para consultar rápidamente las propiedades terapéuticas de los alimentos comunes durante tus consultas.
                 </p>
               </div>
             </div>
@@ -786,7 +784,7 @@ export default function App() {
                   Los Cinco Elementos, Sabores y Naturaleza Térmica
                 </h4>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Aprende a clasificar y seleccionar alimentos con coherencia clínica en base a las 5 naturalezas térmicas, los 5 sabores tradicionales y su tropismo de canal.
+                  Clasifica y selecciona alimentos con coherencia clínica y rapidez según las 5 naturalezas térmicas, sabores tradicionales y tropismo de canal.
                 </p>
               </div>
             </div>
@@ -800,7 +798,7 @@ export default function App() {
                   Diagnóstico Energético y Orientación Dietética
                 </h4>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Descubre cómo transformar un diagnóstico tradicional de MTC (Deficiencias, Excesos, Calor, Frío, Estancamientos) en recomendaciones alimentarias sumamente objetivas y sencillas.
+                  Transforma un diagnóstico tradicional de MTC (Deficiencias, Calor, Frío, Estancamientos) en recomendaciones alimentarias inmediatas y sin improvisar.
                 </p>
               </div>
             </div>
@@ -811,10 +809,10 @@ export default function App() {
               </div>
               <div>
                 <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Recetas Terapéuticas y Casos Clínicos
+                  Protocolos y Recetas Listas para Consultar
                 </h4>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Accede a protocolos listos e indicaciones terapéuticas ya formuladas para un uso e indicación inmediatos dentro de tu consulta profesional.
+                  Accede a protocolos y recetas terapéuticas formuladas y listas para consultar durante tus consultas para indicar con total seguridad.
                 </p>
               </div>
             </div>
@@ -825,10 +823,10 @@ export default function App() {
               </div>
               <div>
                 <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Planificación y Orientación Práctica al Paciente
+                  Planificación y Referencia Rápida para el Paciente
                 </h4>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Modelos prácticos y guías rápidas listas para imprimir que facilitan enormemente el apego, la comprensión y los resultados terapéuticos de tus consultantes.
+                  Modelos prácticos y guías rápidas listas para imprimir que te permiten entregar recomendaciones claras de forma rápida y profesional, facilitando el apego al tratamiento.
                 </p>
               </div>
             </div>
@@ -845,10 +843,10 @@ export default function App() {
           <div className="pt-4" id="whatsapp-feed-container">
             <div className="text-center mb-12">
               <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium mb-3">
-                Mira lo que están diciendo los pacientes tratados con Dietoterapia China
+                Mira lo que opinan otros profesionales de la salud y terapeutas
               </h3>
               <p className="text-xs md:text-sm text-gray-500 max-w-xl mx-auto">
-                Mensajes reales de pacientes reales que experimentaron los cambios clínicos en su alimentación guiada.
+                La confianza y los resultados clínicos que experimentan al aplicar la Dietoterapia China en consulta con sus pacientes.
               </p>
             </div>
 
@@ -862,8 +860,8 @@ export default function App() {
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#113827] hover:bg-[#1b4b35] text-white font-semibold text-sm tracking-wide transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-md cursor-pointer"
                 id="whatsapp-cta-btn"
               >
-                Quiero obtener acceso ahora
-                <span className="ml-2">→</span>
+                QUIERO ACCEDER AHORA
+                <span className="ml-2">➔</span>
               </button>
             </div>
           </div>
@@ -894,7 +892,7 @@ export default function App() {
               </div>
               <div className="pt-2">
                 <h4 className="font-serif text-lg font-bold text-forest-dark mb-2">
-                  Tarjetas de Consulta Rápida:<br />Síndromes y Alimentos
+                  Tarjetas de Consulta Rápida para Recomendar Alimentos con Seguridad
                 </h4>
                 <p className="text-xs text-gray-600 leading-relaxed mb-6">
                   Tarjetas en formato digital listas para imprimir (tamaño A6) con las principales síndromes clínicos de la MTC y la lista simplificada de sus alimentos indicados y contraindicados.
@@ -1074,7 +1072,7 @@ export default function App() {
               <div>
                 {/* Header Badge */}
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] tracking-widest font-extrabold text-emerald-800 uppercase mb-6">
-                  <span>⚡</span> ACCESO COMPLETO
+                  <span>⚡</span> PLAN COMPLETO
                 </div>
 
                 {/* Prices */}
@@ -1109,6 +1107,9 @@ export default function App() {
                 <div className="space-y-4 pt-4 border-t border-gray-100">
                   <div className="text-xs font-bold text-forest-dark uppercase tracking-wider mb-2">
                     ✓ TODO LO DEL PLAN BÁSICO Y ADEMÁS:
+                  </div>
+                  <div className="text-xs text-emerald-900 font-semibold bg-emerald-50/80 p-3 rounded-xl border border-emerald-150 leading-relaxed">
+                    💡 Todo lo necesario para sentirte más seguro al orientar a tus pacientes desde la primera consulta.
                   </div>
                   <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
                     <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
@@ -1159,7 +1160,7 @@ export default function App() {
                   className="block w-full py-4.5 rounded-xl bg-[#113827] hover:bg-[#1b4b35] text-white font-extrabold text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-emerald-900/10 text-center cursor-pointer"
                   id="checkout-plan-completo"
                 >
-                  Quiero el Acceso Completo ➔
+                  Quiero el Plan Completo ➔
                 </button>
               </div>
 
@@ -1197,7 +1198,7 @@ export default function App() {
               <div>
                 <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Manual Completo</h5>
                 <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Todo lo que necesitas saber para diagnosticar y tratar a tus pacientes con Dietoterapia China tradicional.
+                  Consulta rápidamente qué alimentos recomendar según el diagnóstico energético.
                 </p>
               </div>
             </div>
@@ -1209,7 +1210,7 @@ export default function App() {
               <div>
                 <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Herramientas Prácticas</h5>
                 <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Materiales prácticos para agilizar la toma de decisiones y el diagnóstico bioenergético en tu consulta.
+                  Toma decisiones con mayor seguridad durante tus consultas.
                 </p>
               </div>
             </div>
@@ -1221,7 +1222,7 @@ export default function App() {
               <div>
                 <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Tarjetas en PDF</h5>
                 <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Tarjetas de consulta rápida con la clasificación exacta de alimentos por sabor, naturaleza y síndrome.
+                  Encuentra en segundos los alimentos indicados para cada síndrome.
                 </p>
               </div>
             </div>
@@ -1233,7 +1234,7 @@ export default function App() {
               <div>
                 <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Guía de Recetas</h5>
                 <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Recetas medicinales listas para entregar y recomendar a tus pacientes según su patrón desequilibrado.
+                  Entrega recomendaciones prácticas sin tener que improvisar.
                 </p>
               </div>
             </div>
@@ -1336,13 +1337,13 @@ export default function App() {
 
           <div className="space-y-4 text-xs md:text-sm text-sand-light/90 max-w-2xl leading-relaxed text-justify sm:text-center" id="about-us-paragraphs">
             <p>
-              Somos un canal de contenido educativo de excelencia y una comunidad de terapeutas que vela por la formación ética y rigurosa de los profesionales de la salud.
+              Ayudamos a los profesionales de la Medicina China a sentirse más seguros al aplicar sus conocimientos en la práctica clínica diaria.
             </p>
             <p>
               Nuestro principal propósito y misión es decodificar y simplificar el conocimiento ancestral de la Medicina Tradicional China para transformarlo en materiales clínicos sumamente didácticos, prácticos y directamente aplicables a tu consulta del día a día.
             </p>
             <p>
-              Diseñamos herramientas de estudio integrales que permiten a los profesionales de la salud sentirse más seguros, confiados y plenamente preparados para diagnosticar y ofrecer consultas de primer nivel.
+              Diseñamos herramientas de estudio integrales que permiten a los terapeutas y profesionales sentirse más seguros, confiados y plenamente preparados para diagnosticar y ofrecer indicaciones de primer nivel.
             </p>
             <p>
               Si deseas profundizar tus conocimientos técnicos y emplear la Medicina China con un nivel superior de estrategia, coherencia y solidez en beneficio de tus pacientes, estás definitivamente en el lugar correcto.
@@ -1357,7 +1358,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           
           <h3 className="font-serif text-3xl md:text-5xl text-forest-dark tracking-tight leading-tight mb-4 font-semibold">
-            Comienza hoy mismo a aplicar la<br />Dietoterapia China en tu consulta
+            Atiende con más confianza<br />desde tu próxima consulta
           </h3>
 
           <p className="text-xs md:text-sm text-gray-500 font-mono tracking-wider uppercase mb-8">
@@ -1370,8 +1371,8 @@ export default function App() {
             className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-gold-medium hover:bg-gold-light text-forest-dark font-bold text-sm md:text-base tracking-wider uppercase transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
             id="final-cta-checkout-btn"
           >
-            Quiero mi acceso ahora
-            <span className="ml-2">→</span>
+            QUIERO ACCEDER AHORA
+            <span className="ml-2">➔</span>
           </button>
 
         </div>
@@ -1413,7 +1414,7 @@ export default function App() {
 
             {/* Subtitle */}
             <p className="text-xs text-gray-600 mt-2 max-w-sm px-2">
-              Haz upgrade a la <strong className="text-forest-dark font-bold">Oferta Completa</strong> ahora por solo{" "}
+              Haz upgrade al <strong className="text-forest-dark font-bold">Plan Completo</strong> ahora por solo{" "}
               <span className="font-mono font-extrabold text-base text-emerald-800">{currency.symbol}{currency.upsell}</span>{" "}
               {currency.code !== "USD" && (
                 <span className="text-xs text-emerald-800 font-bold">
@@ -1471,7 +1472,7 @@ export default function App() {
               }}
               className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-emerald-700 to-[#c59f5b] hover:from-emerald-800 hover:to-[#dfc28d] text-white font-extrabold text-xs tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-emerald-900/10 text-center cursor-pointer"
             >
-              ¡SÍ! QUIERO EL ACCESO COMPLETO POR {currency.symbol}{currency.upsell}
+              ¡SÍ! QUIERO EL PLAN COMPLETO POR {currency.symbol}{currency.upsell}
             </button>
 
             {/* Decline Link Button */}

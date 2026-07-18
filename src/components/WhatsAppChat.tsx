@@ -5,31 +5,31 @@ export default function WhatsAppChat() {
   const testimonials = [
     {
       id: 1,
-      name: "Sofía Méndez",
-      role: "Tratamiento: Fatiga y Distensión",
+      name: "Dr. Alejandro Ruiz",
+      role: "Acupunturista y Terapeuta MTC",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
-      text: "La dieta templada y los caldos de bazo cambiaron mi vida por completo. En solo dos semanas mi digestión mejoró y recuperé mi energía diaria.",
+      text: "Gracias a este manual ahora sé exactamente qué alimentos recomendar según el diagnóstico energético del paciente, sin perder tiempo buscando en varios lados.",
     },
     {
       id: 2,
-      name: "Carlos Mendoza",
-      role: "Tratamiento: Gastritis Crónica",
+      name: "Dra. Elena Santos",
+      role: "Nutricionista e Investigadora",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
-      text: "El dolor de estómago constante desapareció eliminando los lácteos y alimentos fríos. Increíble cómo cosas tan sencillas tienen tanto impacto.",
+      text: "Siento mucha más seguridad en consulta. El material está tan bien organizado que es un excelente apoyo para dar recomendaciones precisas desde el primer día.",
     },
     {
       id: 3,
-      name: "Laura Domínguez",
-      role: "Tratamiento: Insomnio y Frío",
+      name: "Marta Benítez",
+      role: "Terapeuta de Medicina China",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150",
-      text: "Gracias a la terapia de alimentos templados pudimos equilibrar mi energía Yang. No solo mejoró mi digestión, sino también la calidad de mi sueño.",
+      text: "Ya no tengo que revisar varios libros para armar un plan de alimentación. El manual me da herramientas prácticas listas para imprimir y dar al paciente de inmediato.",
     },
     {
       id: 4,
-      name: "Andrés Villalobos",
-      role: "Tratamiento: Deficiencia de Qi",
+      name: "Javier Solís",
+      role: "Médico Integrativo",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
-      text: "La guía estacional ayudó a mi familia a no enfermarse este invierno. Los caldos y tés recomendados son sumamente reconfortantes y eficaces.",
+      text: "Es el recurso definitivo para consulta. Las pautas de alimentación y las tarjetas de referencia rápida me permiten tomar decisiones con total confianza delante del paciente.",
     },
   ];
 
