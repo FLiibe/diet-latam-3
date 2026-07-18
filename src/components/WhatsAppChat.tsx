@@ -7,14 +7,14 @@ export default function WhatsAppChat() {
       id: 1,
       name: "Dr. Alejandro Ruiz",
       role: "Acupunturista y Terapeuta MTC",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
       text: "Gracias a este manual ahora sé exactamente qué alimentos recomendar según el diagnóstico energético del paciente, sin perder tiempo buscando en varios lados.",
     },
     {
       id: 2,
       name: "Dra. Elena Santos",
       role: "Nutricionista e Investigadora",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
       text: "Siento mucha más seguridad en consulta. El material está tan bien organizado que es un excelente apoyo para dar recomendaciones precisas desde el primer día.",
     },
     {
