@@ -463,7 +463,7 @@ export default function App() {
 
         {/* COMPACT FOOTER */}
         <footer className="bg-red-950 text-gray-400 py-4 sm:py-6 text-center text-[11px] border-t border-red-900/30 w-full mt-auto">
-          <p>© {new Date().getFullYear()} Acupuntura Clínica. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} AcuSalud Academia. Todos los derechos reservados.</p>
         </footer>
 
       </div>
@@ -599,7 +599,7 @@ export default function App() {
 
         {/* COMPACT FOOTER */}
         <footer className="bg-forest-dark text-gray-400 py-4 sm:py-6 text-center text-[11px] border-t border-forest-light/20 w-full mt-auto">
-          <p>© {new Date().getFullYear()} Acupuntura Clínica. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} AcuSalud Academia. Todos los derechos reservados.</p>
         </footer>
 
       </div>
