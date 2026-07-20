@@ -26,6 +26,7 @@ import HotmartSalesFunnel from "./components/HotmartSalesFunnel";
 
 // Import generated book bundle image
 const bundleImg = "https://i.ibb.co/KxVLBT9R/Chat-GPT-Image-18-lug-2026-17-18-49.png";
+const protocolImg = "https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png";
 
 // ============================================================================
 // REGION: GEOLOCATION & DYNAMIC CURRENCY ENGINE
@@ -210,6 +211,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(651); // 10 minutes * 60 + 51 = 651 seconds
   const [showUpsellModal, setShowUpsellModal] = useState(false);
   const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+  const [protocolImageLoaded, setProtocolImageLoaded] = useState(false);
 
   useEffect(() => {
     // High-priority preload link for the hero image to make it load much faster on mobile phones
@@ -218,6 +220,13 @@ export default function App() {
     link.as = "image";
     link.href = bundleImg;
     document.head.appendChild(link);
+
+    // Preload for the protocol image (upsell/downsell page) so it's fully cached when needed
+    const linkProtocol = document.createElement("link");
+    linkProtocol.rel = "preload";
+    linkProtocol.as = "image";
+    linkProtocol.href = protocolImg;
+    document.head.appendChild(linkProtocol);
 
     const img = new Image();
     img.src = bundleImg;
@@ -229,9 +238,22 @@ export default function App() {
       };
     }
 
+    const imgProtocol = new Image();
+    imgProtocol.src = protocolImg;
+    if (imgProtocol.complete) {
+      setProtocolImageLoaded(true);
+    } else {
+      imgProtocol.onload = () => {
+        setProtocolImageLoaded(true);
+      };
+    }
+
     return () => {
       try {
         document.head.removeChild(link);
+      } catch (e) {}
+      try {
+        document.head.removeChild(linkProtocol);
       } catch (e) {}
     };
   }, []);
@@ -295,7 +317,7 @@ export default function App() {
 
   if (currentPath === "/downsell") {
     return (
-      <div className="min-h-screen bg-rose-50/20 antialiased font-sans text-gray-800 flex flex-col justify-between" id="downsell-landing-page">
+      <div className="min-h-screen bg-rose-50/20 antialiased font-sans text-gray-800 flex flex-col justify-between relative" id="downsell-landing-page">
         
         {/* TOP EXTREME URGENCY BANNER */}
         <div className="bg-red-950 text-white text-[11px] md:text-xs py-2.5 px-4 text-center font-mono flex items-center justify-center gap-2 select-none shadow-sm sticky top-0 z-40">
@@ -310,23 +332,15 @@ export default function App() {
         </div>
 
         {/* CONTENT CONTAINER */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12 flex-1 flex flex-col items-center justify-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 pb-12 flex-1 flex flex-col items-center justify-start">
           
-          {/* LOGO */}
-          <div className="mb-4 md:mb-6">
-            <AcuLogo size="sm" />
-          </div>
-
           {/* CRITICAL ATTENTION NOTICE */}
-          <div className="w-full max-w-3xl bg-amber-50/95 border-2 border-amber-300 rounded-2xl p-4 md:p-6 text-center mb-8 shadow-md animate-pulse">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-amber-950">
-              <span className="text-2xl">⚠️</span>
-              <p className="font-sans text-xs sm:text-sm font-black text-amber-950 leading-snug uppercase tracking-wide">
-                ¡ESPERA! ESTA ES TU ÚLTIMA Y ABSOLUTA OPORTUNIDAD PARA AHORRAR EL 50%
+          <div className="w-full max-w-3xl bg-amber-50/95 border border-amber-300 rounded-xl py-2 px-4 text-center mb-6 shadow-xs animate-pulse">
+            <div className="flex items-center justify-center gap-2 text-amber-950 text-xs">
+              <span>⚠️</span>
+              <p className="font-sans font-bold text-amber-950 uppercase tracking-wide">
+                <strong>¡ESPERA!</strong> Esta es tu última oportunidad de ahorrar el 50% antes de perder esta oferta para siempre.
               </p>
-            </div>
-            <div className="mt-2 text-xs text-amber-900 font-medium">
-              Si cierras esta pestaña, sales de la página o regresas al inicio, perderás esta oferta para siempre. No se te volverá a presentar en ningún otro lugar bajo este precio promocional.
             </div>
           </div>
 
@@ -347,14 +361,22 @@ export default function App() {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500"></div>
             
             {/* Visual Book Cover / Badge (Left side on desktop) */}
-            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2">
-              <div className="relative group">
+            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2 min-h-[220px] sm:min-h-[280px]">
+              <div className="relative group w-full flex items-center justify-center">
+                {/* Elegant Skeleton Loader */}
+                {!protocolImageLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-50/50 rounded-2xl animate-pulse">
+                    <div className="w-8 h-8 rounded-full border-4 border-red-300 border-t-red-600 animate-spin mb-2"></div>
+                    <span className="text-[10px] font-mono text-red-800 tracking-wider">Cargando protocolo...</span>
+                  </div>
+                )}
                 {/* High quality 3D Book Graphic */}
                 <img 
-                  src="https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png" 
+                  src={protocolImg} 
                   alt="Protocolo de 21 Días" 
-                  className="w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-transform duration-300 group-hover:scale-105"
+                  className={`w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-all duration-700 group-hover:scale-105 ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}
                   referrerPolicy="no-referrer"
+                  onLoad={() => setProtocolImageLoaded(true)}
                 />
 
                 {/* 50% OFF Stamp */}
@@ -450,7 +472,7 @@ export default function App() {
 
   if (currentPath === "/upsell") {
     return (
-      <div className="min-h-screen bg-sand-light antialiased font-sans text-gray-800 flex flex-col justify-between" id="upsell-landing-page">
+      <div className="min-h-screen bg-sand-light antialiased font-sans text-gray-800 flex flex-col justify-between relative" id="upsell-landing-page">
         
         {/* TOP URGENT BANNER */}
         <div className="bg-[#09261a] text-white text-[11px] md:text-xs py-2.5 px-4 text-center font-mono flex items-center justify-center gap-2 select-none shadow-sm sticky top-0 z-40">
@@ -464,24 +486,16 @@ export default function App() {
           </span>
         </div>
 
-        {/* CONTENT CONTAINER */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-12 flex-1 flex flex-col items-center justify-center">
+        {/* CONTENT CONTAINER - aligned to top */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 pb-12 flex-1 flex flex-col items-center justify-start">
           
-          {/* LOGO */}
-          <div className="mb-4 md:mb-6">
-            <AcuLogo size="sm" />
-          </div>
-
           {/* THANK YOU / SUCCESS NOTICE */}
-          <div className="w-full max-w-3xl bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 md:p-5 text-center mb-8 shadow-xs animate-in fade-in duration-300">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-emerald-800">
-              <span className="text-xl sm:text-2xl">🎉</span>
-              <p className="font-sans text-xs sm:text-sm font-semibold text-emerald-900 leading-snug">
-                ¡Gracias por tu compra! Tu pedido del manual principal ha sido procesado de forma segura y se está enviando a tu correo ahora mismo.
+          <div className="w-full max-w-3xl bg-emerald-50/80 border border-emerald-200 rounded-xl py-2 px-4 text-center mb-6 shadow-xs animate-in fade-in duration-300">
+            <div className="flex items-center justify-center gap-2 text-emerald-800 text-xs">
+              <span>🎉</span>
+              <p className="font-sans font-medium text-emerald-900">
+                <strong>¡Gracias por tu compra!</strong> Tu pedido ya se está enviando a tu correo. No cierres esta página, mira esta adición exclusiva recomendada:
               </p>
-            </div>
-            <div className="mt-2 text-[10px] sm:text-xs text-emerald-700/80 font-medium">
-              ⚠️ ¡Espera! No cierres ni recargues esta página. Te presentamos una adición exclusiva recomendada a continuación:
             </div>
           </div>
 
@@ -501,14 +515,22 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center w-full max-w-3xl bg-white rounded-3xl border border-sand-dark p-4 sm:p-6 md:p-8 shadow-xl mb-6 md:mb-10">
             
             {/* Visual Book Cover / Badge (Left side on desktop) */}
-            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2">
-              <div className="relative group">
+            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2 min-h-[220px] sm:min-h-[280px]">
+              <div className="relative group w-full flex items-center justify-center">
+                {/* Elegant Skeleton Loader */}
+                {!protocolImageLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-sand-light/30 rounded-2xl animate-pulse">
+                    <div className="w-8 h-8 rounded-full border-4 border-forest-light border-t-gold-medium animate-spin mb-2"></div>
+                    <span className="text-[10px] font-mono text-forest-dark tracking-wider">Cargando protocolo...</span>
+                  </div>
+                )}
                 {/* High quality 3D Book Graphic */}
                 <img 
-                  src="https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png" 
+                  src={protocolImg} 
                   alt="Protocolo de 21 Días" 
-                  className="w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-transform duration-300 group-hover:scale-105"
+                  className={`w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-all duration-700 group-hover:scale-105 ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}
                   referrerPolicy="no-referrer"
+                  onLoad={() => setProtocolImageLoaded(true)}
                 />
 
                 {/* 50% OFF Stamp */}
