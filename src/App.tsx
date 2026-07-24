@@ -16,7 +16,10 @@ import {
   Wrench,
   AlertCircle,
   X,
-  CreditCard
+  CreditCard,
+  Stethoscope,
+  Printer,
+  Zap
 } from "lucide-react";
 import AcuLogo from "./components/AcuLogo";
 import MovementTabs from "./components/MovementTabs";
@@ -24,9 +27,14 @@ import WhatsAppChat from "./components/WhatsAppChat";
 import FAQAccordion from "./components/FAQAccordion";
 import HotmartSalesFunnel from "./components/HotmartSalesFunnel";
 
-// Import generated book bundle image
-const bundleImg = "https://i.ibb.co/KxVLBT9R/Chat-GPT-Image-18-lug-2026-17-18-49.png";
-const protocolImg = "https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png";
+// Import generated book bundle image (optimized with AVIF and WebP formats)
+const bundleImgAvif = "https://res.cloudinary.com/dgncwrnvw/image/upload/v1784895593/ChatGPT_Image_18_lug_2026_17_18_49_pj2gbr.avif";
+const bundleImgWebp = "https://res.cloudinary.com/dgncwrnvw/image/upload/v1784895593/ChatGPT_Image_18_lug_2026_17_18_49_pye5ee.webp";
+const bundleImgPng = "https://i.ibb.co/KxVLBT9R/Chat-GPT-Image-18-lug-2026-17-18-49.png";
+
+const protocolImgAvif = "https://res.cloudinary.com/dgncwrnvw/image/upload/v1784895823/ChatGPT_Image_20_lug_2026_15_16_38_abj4bv.avif";
+const protocolImgWebp = "https://res.cloudinary.com/dgncwrnvw/image/upload/v1784895823/ChatGPT_Image_20_lug_2026_15_16_38_xnpysb.webp";
+const protocolImgPng = "https://i.ibb.co/hJZNX1mh/Chat-GPT-Image-15-lug-2026-22-41-37.png";
 
 // ============================================================================
 // REGION: GEOLOCATION & DYNAMIC CURRENCY ENGINE
@@ -46,6 +54,9 @@ interface CurrencyInfo {
   bono2: string;
   bono3: string;
   bono4: string;
+  bono5: string;
+  bono6: string;
+  bono7: string;
   bonosTotal: string;
   upsell: string;
   protocolo: string;
@@ -67,7 +78,10 @@ const defaultCurrency: CurrencyInfo = {
   bono2: "10",
   bono3: "12",
   bono4: "15",
-  bonosTotal: "52",
+  bono5: "12",
+  bono6: "18",
+  bono7: "10",
+  bonosTotal: "92",
   upsell: "10",
   protocolo: "27",
   protocoloOriginal: "59",
@@ -78,14 +92,14 @@ const defaultCurrency: CurrencyInfo = {
  * Dictionary mapping regional ISO 3166-1 alpha-2 country codes to localized values.
  */
 const currencyMap: Record<string, CurrencyInfo> = {
-  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bonosTotal: "988", upsell: "190", protocolo: "513", protocoloOriginal: "1100", protocoloDownsell: "323" }, // Mexico
-  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bonosTotal: "208.000", upsell: "40.000", protocolo: "108.000", protocoloOriginal: "230.000", protocoloDownsell: "68.000" }, // Colombia
-  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bonosTotal: "48.300", upsell: "9.300", protocolo: "25.200", protocoloOriginal: "54.000", protocoloDownsell: "15.800" }, // Chile
-  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bonosTotal: "191", upsell: "37", protocolo: "100", protocoloOriginal: "215", protocoloDownsell: "63" }, // Peru
-  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bonosTotal: "46.800", upsell: "9.000", protocolo: "24.300", protocoloOriginal: "52.000", protocoloDownsell: "15.300" }, // Argentina
-  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bonosTotal: "294", upsell: "56", protocolo: "150", protocoloOriginal: "320", protocoloDownsell: "95" }, // Brazil
-  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bonosTotal: "52", upsell: "10", protocolo: "27", protocoloOriginal: "59", protocoloDownsell: "17" }, // Spain
-  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bonosTotal: "2.250", upsell: "430", protocolo: "1.170", protocoloOriginal: "2.500", protocoloDownsell: "730" }, // Uruguay
+  MX: { code: "MXN", symbol: "$", basico: "95", completo: "285", basicoOriginal: "550", completoOriginal: "1200", bono1: "285", bono2: "190", bono3: "228", bono4: "285", bono5: "228", bono6: "342", bono7: "190", bonosTotal: "1748", upsell: "190", protocolo: "513", protocoloOriginal: "1100", protocoloDownsell: "323" }, // Mexico
+  CO: { code: "COP", symbol: "$", basico: "20.000", completo: "60.000", basicoOriginal: "120.000", completoOriginal: "260.000", bono1: "60.000", bono2: "40.000", bono3: "48.000", bono4: "60.000", bono5: "48.000", bono6: "72.000", bono7: "40.000", bonosTotal: "368.000", upsell: "40.000", protocolo: "108.000", protocoloOriginal: "230.000", protocoloDownsell: "68.000" }, // Colombia
+  CL: { code: "CLP", symbol: "$", basico: "4.700", completo: "14.000", basicoOriginal: "27.000", completoOriginal: "60.000", bono1: "14.000", bono2: "9.300", bono3: "11.000", bono4: "14.000", bono5: "11.000", bono6: "16.750", bono7: "9.300", bonosTotal: "85.350", upsell: "9.300", protocolo: "25.200", protocoloOriginal: "54.000", protocoloDownsell: "15.800" }, // Chile
+  PE: { code: "PEN", symbol: "S/.", basico: "18.5", completo: "55", basicoOriginal: "110", completoOriginal: "240", bono1: "55", bono2: "37", bono3: "44", bono4: "55", bono5: "44", bono6: "66.5", bono7: "37", bonosTotal: "338.5", upsell: "37", protocolo: "100", protocoloOriginal: "215", protocoloDownsell: "63" }, // Peru
+  AR: { code: "ARS", symbol: "$", basico: "4.500", completo: "13.500", basicoOriginal: "26.000", completoOriginal: "58.000", bono1: "13.500", bono2: "9.000", bono3: "10.800", bono4: "13.500", bono5: "10.800", bono6: "16.200", bono7: "9.000", bonosTotal: "82.800", upsell: "9.000", protocolo: "24.300", protocoloOriginal: "52.000", protocoloDownsell: "15.300" }, // Argentina
+  BR: { code: "BRL", symbol: "R$", basico: "28", completo: "85", basicoOriginal: "160", completoOriginal: "350", bono1: "85", bono2: "56", bono3: "68", bono4: "85", bono5: "68", bono6: "100", bono7: "56", bonosTotal: "518", upsell: "56", protocolo: "150", protocoloOriginal: "320", protocoloDownsell: "95" }, // Brazil
+  ES: { code: "EUR", symbol: "€", basico: "5", completo: "15", basicoOriginal: "29", completoOriginal: "64", bono1: "15", bono2: "10", bono3: "12", bono4: "15", bono5: "12", bono6: "18", bono7: "10", bonosTotal: "92", upsell: "10", protocolo: "27", protocoloOriginal: "59", protocoloDownsell: "17" }, // Spain
+  UY: { code: "UYU", symbol: "$U", basico: "215", completo: "650", basicoOriginal: "1250", completoOriginal: "2750", bono1: "650", bono2: "430", bono3: "520", bono4: "650", bono5: "520", bono6: "770", bono7: "430", bonosTotal: "3.970", upsell: "430", protocolo: "1.170", protocoloOriginal: "2.500", protocoloDownsell: "730" }, // Uruguay
   US: defaultCurrency,
 };
 
@@ -218,18 +232,18 @@ export default function App() {
     const link = document.createElement("link");
     link.rel = "preload";
     link.as = "image";
-    link.href = bundleImg;
+    link.href = bundleImgAvif;
     document.head.appendChild(link);
 
     // Preload for the protocol image (upsell/downsell page) so it's fully cached when needed
     const linkProtocol = document.createElement("link");
     linkProtocol.rel = "preload";
     linkProtocol.as = "image";
-    linkProtocol.href = protocolImg;
+    linkProtocol.href = protocolImgAvif;
     document.head.appendChild(linkProtocol);
 
     const img = new Image();
-    img.src = bundleImg;
+    img.src = bundleImgAvif;
     if (img.complete) {
       setHeroImageLoaded(true);
     } else {
@@ -239,7 +253,7 @@ export default function App() {
     }
 
     const imgProtocol = new Image();
-    imgProtocol.src = protocolImg;
+    imgProtocol.src = protocolImgAvif;
     if (imgProtocol.complete) {
       setProtocolImageLoaded(true);
     } else {
@@ -356,73 +370,70 @@ export default function App() {
             No limites tus conocimientos a la pura teoría del manual. Consigue el <strong className="text-red-700">Protocolo de 21 Días</strong> ahora mismo para aplicar de inmediato sin esfuerzo mental de planificación. Esta oferta exclusiva de un solo clic nunca volverá a estar disponible para ti.
           </p>
 
-          {/* HERO GRID: VISUAL CARD AND HIGHLIGHTS */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center w-full max-w-3xl bg-white rounded-3xl border-2 border-red-100 p-4 sm:p-6 md:p-8 shadow-2xl mb-6 md:mb-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500"></div>
+          {/* Main Book Mockup Image - MATCHES EXACTLY THE MAIN HERO LAYOUT AND SIZES */}
+          <div className="relative max-w-xl mx-auto mb-10 group rounded-2xl overflow-hidden shadow-2xl border-4 border-white transition-transform duration-500 hover:scale-[1.01] min-h-[250px] sm:min-h-[400px] flex items-center justify-center bg-rose-50/10" id="downsell-book-mockup-wrapper">
+            {/* Elegant Skeleton Loader */}
+            {!protocolImageLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-rose-50/30 rounded-2xl animate-pulse">
+                <div className="w-8 h-8 rounded-full border-4 border-red-300 border-t-red-600 animate-spin mb-2"></div>
+                <span className="text-[10px] font-mono text-red-800 tracking-wider">Cargando protocolo...</span>
+              </div>
+            )}
+            <picture className={`w-full transition-opacity duration-700 ease-in-out ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}>
+              <source srcSet={protocolImgAvif} type="image/avif" />
+              <source srcSet={protocolImgWebp} type="image/webp" />
+              <img 
+                src={protocolImgPng} 
+                alt="Protocolo de 21 Días" 
+                className="w-full h-auto object-cover"
+                referrerPolicy="no-referrer"
+                onLoad={() => setProtocolImageLoaded(true)}
+              />
+            </picture>
+
+            {/* 50% OFF Stamp */}
+            <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
+              ¡50% OFF!
+            </div>
+            {/* Soft decorative shadow overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </div>
+
+          {/* Core Benefits List Card */}
+          <div className="w-full max-w-xl bg-white rounded-3xl border-2 border-red-100 p-6 sm:p-8 shadow-2xl mb-6 md:mb-10">
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-red-800 flex items-center gap-1.5 justify-center mb-4 uppercase tracking-wide">
+              ⚠️ ¿POR QUÉ NO DEBES DEJARLO IR?
+            </h3>
             
-            {/* Visual Book Cover / Badge (Left side on desktop) */}
-            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2 min-h-[220px] sm:min-h-[280px]">
-              <div className="relative group w-full flex items-center justify-center">
-                {/* Elegant Skeleton Loader */}
-                {!protocolImageLoaded && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-50/50 rounded-2xl animate-pulse">
-                    <div className="w-8 h-8 rounded-full border-4 border-red-300 border-t-red-600 animate-spin mb-2"></div>
-                    <span className="text-[10px] font-mono text-red-800 tracking-wider">Cargando protocolo...</span>
-                  </div>
-                )}
-                {/* High quality 3D Book Graphic */}
-                <img 
-                  src={protocolImg} 
-                  alt="Protocolo de 21 Días" 
-                  className={`w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-all duration-700 group-hover:scale-105 ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}
-                  referrerPolicy="no-referrer"
-                  onLoad={() => setProtocolImageLoaded(true)}
-                />
-
-                {/* 50% OFF Stamp */}
-                <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
-                  ¡50% OFF!
+            <div className="space-y-3.5 text-xs sm:text-sm text-gray-600">
+              <div className="flex items-start gap-2.5">
+                <span className="text-red-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-red-950">Plan de Acción Instantáneo:</strong> Empieza mañana mismo sin perder tempo planificando o calculando porciones.
                 </div>
               </div>
-            </div>
-
-            {/* Core Benefits List (Right side on desktop) */}
-            <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
-              <h3 className="font-serif text-base sm:text-lg font-bold text-red-800 flex items-center gap-1.5 uppercase tracking-wide">
-                ⚠️ ¿POR QUÉ NO DEBES DEJARLO IR?
-              </h3>
               
-              <div className="space-y-2.5 sm:space-y-3 text-xs text-gray-600">
-                <div className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-red-950">Plan de Acción Instantáneo:</strong> Empieza mañana mismo sin perder tempo planificando o calculando porciones.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-red-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-red-950">Máximo Ahorro de Tiempo:</strong> Salta directo a la fase práctica de la dietoterapia clínica y obtén resultados más rápidos.
                 </div>
-                
-                <div className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-red-950">Máximo Ahorro de Tiempo:</strong> Salta directo a la fase práctica de la dietoterapia clínica y obtén resultados más rápidos.
-                  </div>
-                </div>
+              </div>
 
-                <div className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-red-950">Garantía de Devolución Extendida:</strong> Sin riesgos. Si el manual no es lo que esperabas, te reembolsamos ambos productos al 100%.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-red-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-red-950">Garantía de Devolución Extendida:</strong> Sin riesgos. Si el manual no es lo que esperabas, te reembolsamos ambos productos al 100%.
                 </div>
+              </div>
 
-                <div className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-red-950">Acceso Vitalicio Seguro:</strong> Formato digital descargable para siempre en tu móvil, tablet u ordenador.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-red-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-red-950">Acceso Vitalicio Seguro:</strong> Formato digital descargable para siempre en tu móvil, tablet u ordenador.
                 </div>
               </div>
             </div>
-
           </div>
 
           {/* PRICE DROP ALERT BANNER */}
@@ -511,72 +522,70 @@ export default function App() {
             Este protocolo es una herramienta de doble propósito de alto nivel: es excelente tanto para <strong className="text-forest-dark">personas interesadas en aplicarlo en sí mismas</strong> para depurar toxinas y restaurar su flujo digestivo, como para <strong className="text-forest-dark">médicos, nutricionistas o terapeutas</strong> que desean entregar un protocolo clínico llave en mano a sus pacientes, ahorrándoles valiosas horas de planificación con un plan estructurado y 100% listo para usar en consulta.
           </p>
 
-          {/* HERO GRID: VISUAL CARD AND HIGHLIGHTS */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center w-full max-w-3xl bg-white rounded-3xl border border-sand-dark p-4 sm:p-6 md:p-8 shadow-xl mb-6 md:mb-10">
+          {/* Main Book Mockup Image - MATCHES EXACTLY THE MAIN HERO LAYOUT AND SIZES */}
+          <div className="relative max-w-xl mx-auto mb-10 group rounded-2xl overflow-hidden shadow-2xl border-4 border-white transition-transform duration-500 hover:scale-[1.01] min-h-[250px] sm:min-h-[400px] flex items-center justify-center bg-sand-light/50" id="upsell-book-mockup-wrapper">
+            {/* Elegant Skeleton Loader */}
+            {!protocolImageLoaded && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-sand-light/40 animate-pulse">
+                <div className="w-10 h-10 rounded-full border-4 border-forest-light border-t-gold-medium animate-spin mb-3"></div>
+                <span className="text-xs font-mono text-forest-dark tracking-wider">Cargando material interactivo...</span>
+              </div>
+            )}
+            <picture className={`w-full transition-opacity duration-700 ease-in-out ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}>
+              <source srcSet={protocolImgAvif} type="image/avif" />
+              <source srcSet={protocolImgWebp} type="image/webp" />
+              <img
+                src={protocolImgPng}
+                alt="Protocolo de 21 Días"
+                className="w-full h-auto object-cover"
+                referrerPolicy="no-referrer"
+                onLoad={() => setProtocolImageLoaded(true)}
+              />
+            </picture>
             
-            {/* Visual Book Cover / Badge (Left side on desktop) */}
-            <div className="col-span-12 md:col-span-5 flex flex-col items-center justify-center relative py-2 min-h-[220px] sm:min-h-[280px]">
-              <div className="relative group w-full flex items-center justify-center">
-                {/* Elegant Skeleton Loader */}
-                {!protocolImageLoaded && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-sand-light/30 rounded-2xl animate-pulse">
-                    <div className="w-8 h-8 rounded-full border-4 border-forest-light border-t-gold-medium animate-spin mb-2"></div>
-                    <span className="text-[10px] font-mono text-forest-dark tracking-wider">Cargando protocolo...</span>
-                  </div>
-                )}
-                {/* High quality 3D Book Graphic */}
-                <img 
-                  src={protocolImg} 
-                  alt="Protocolo de 21 Días" 
-                  className={`w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 object-contain drop-shadow-2xl z-10 transition-all duration-700 group-hover:scale-105 ${protocolImageLoaded ? "opacity-100" : "opacity-0"}`}
-                  referrerPolicy="no-referrer"
-                  onLoad={() => setProtocolImageLoaded(true)}
-                />
+            {/* 50% OFF Stamp */}
+            <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
+              ¡50% OFF!
+            </div>
+            {/* Soft decorative shadow overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </div>
 
-                {/* 50% OFF Stamp */}
-                <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
-                  ¡50% OFF!
+          {/* Core Benefits List Card */}
+          <div className="w-full max-w-xl bg-white rounded-3xl border border-sand-dark p-6 sm:p-8 shadow-xl mb-6 md:mb-10">
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-forest-dark flex items-center gap-1.5 justify-center mb-4 uppercase tracking-wide">
+              ¿Por qué agregar este protocolo?
+            </h3>
+            
+            <div className="space-y-3.5 text-xs sm:text-sm text-gray-600">
+              <div className="flex items-start gap-2.5">
+                <span className="text-emerald-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-forest-dark">Doble Propósito Inteligente:</strong> Úsalo para ti o prescríbelo directamente a tus pacientes en tu práctica clínica privada.
                 </div>
               </div>
-            </div>
-
-            {/* Core Benefits List (Right side on desktop) */}
-            <div className="col-span-12 md:col-span-7 space-y-3 sm:space-y-4">
-              <h3 className="font-serif text-base sm:text-lg font-bold text-forest-dark flex items-center gap-1.5">
-                ¿Por qué agregar este protocolo?
-              </h3>
               
-              <div className="space-y-2.5 sm:space-y-3 text-xs text-gray-600">
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-forest-dark">Doble Propósito Inteligente:</strong> Úsalo para ti o prescríbelo directamente a tus pacientes en tu práctica clínica privada.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-emerald-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-forest-dark">Máximo Ahorro de Tiempo:</strong> Olvídate de planificar desde cero. Un médico o nutricionista obtiene un protocolo clínico ya armado, probado y listo para entregar.
                 </div>
-                
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-forest-dark">Máximo Ahorro de Tiempo:</strong> Olvídate de planificar desde cero. Un médico o nutricionista obtiene un protocolo clínico ya armado, probado y listo para entregar.
-                  </div>
-                </div>
+              </div>
 
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-forest-dark">Menús e Infusiones Clínicas:</strong> Cada día detallado con infusiones, decocciones, alimentos exactos y dosis terapéuticas.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-emerald-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-forest-dark">Menús e Infusiones Clínicas:</strong> Cada día detallado con infusiones, decocciones, alimentos exactos y dosis terapéuticas.
                 </div>
+              </div>
 
-                <div className="flex items-start gap-2">
-                  <span className="text-emerald-600 font-bold text-sm shrink-0">✔</span>
-                  <div>
-                    <strong className="text-forest-dark">Garantía y Formato Portable:</strong> Documento PDF interactivo descargable de por vida cubierto por la misma garantía de tu compra principal.
-                  </div>
+              <div className="flex items-start gap-2.5">
+                <span className="text-emerald-600 font-bold text-base shrink-0">✔</span>
+                <div>
+                  <strong className="text-forest-dark">Garantía y Formato Portable:</strong> Documento PDF interactivo descargable de por vida cubierto por la misma garantía de tu compra principal.
                 </div>
               </div>
             </div>
-
           </div>
 
           {/* HOTMART - Sales Funnel Widget */}
@@ -644,7 +653,7 @@ export default function App() {
 
           {/* Subtext */}
           <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-3xl mx-auto mb-10">
-            Obtén un manual completo y listo para imprimir, con protocolos, alimentos recomendados y herramientas prácticas para indicar con mayor seguridad según el diagnóstico energético.
+            Consulta protocolos clínicos, identifica los alimentos adecuados para cada diagnóstico energético y toma decisiones con mayor confianza en cada atención.
           </p>
 
           {/* Main Book Mockup Image */}
@@ -656,13 +665,17 @@ export default function App() {
                 <span className="text-xs font-mono text-forest-dark tracking-wider">Cargando material interactivo...</span>
               </div>
             )}
-            <img
-              src={bundleImg}
-              alt="Manual Completo de Dietoterapia China y Bonos de consulta"
-              className={`w-full h-auto object-cover transition-opacity duration-700 ease-in-out ${heroImageLoaded ? "opacity-100" : "opacity-0"}`}
-              referrerPolicy="no-referrer"
-              onLoad={() => setHeroImageLoaded(true)}
-            />
+            <picture className={`w-full transition-opacity duration-700 ease-in-out ${heroImageLoaded ? "opacity-100" : "opacity-0"}`}>
+              <source srcSet={bundleImgAvif} type="image/avif" />
+              <source srcSet={bundleImgWebp} type="image/webp" />
+              <img
+                src={bundleImgPng}
+                alt="Manual Completo de Dietoterapia China y Bonos de consulta"
+                className="w-full h-auto object-cover"
+                referrerPolicy="no-referrer"
+                onLoad={() => setHeroImageLoaded(true)}
+              />
+            </picture>
             {/* Soft decorative shadow overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
@@ -697,6 +710,94 @@ export default function App() {
         </section>
 
       </div>
+
+      {/* 2.5. NEW SECTION: Tu Herramienta Clínica de Dietoterapia China */}
+      <section className="py-16 md:py-20 px-6 bg-white border-y border-sand-dark/30" id="clinical-tool-section">
+        <div className="max-w-6xl mx-auto">
+          
+          <div className="text-center mb-12">
+            <span className="text-[10.5px] md:text-xs font-mono tracking-[0.3em] uppercase text-gold-dark font-semibold">
+              Estructura Profesional
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium mt-2 mb-4">
+              Tu Herramienta Clínica de Dietoterapia China
+            </h2>
+            <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Todo lo que necesitas para orientar a tus pacientes con mayor confianza desde la primera consulta.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            
+            {/* Card 1 */}
+            <div className="bg-sand-light/20 border border-sand-dark/30 p-6 rounded-2xl shadow-xs hover:shadow-sm hover:border-gold-medium/40 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-forest-dark flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <BookOpen className="w-5.5 h-5.5 text-[#113827]" />
+              </div>
+              <h3 className="font-serif text-base font-bold text-forest-dark mb-2 leading-snug">
+                Manual Clínico Imprimible
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                Guía de referencia rápida para consultar al instante durante tus consultas sin perder tiempo.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-sand-light/20 border border-sand-dark/30 p-6 rounded-2xl shadow-xs hover:shadow-sm hover:border-gold-medium/40 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-forest-dark flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <Stethoscope className="w-5.5 h-5.5 text-[#113827]" />
+              </div>
+              <h3 className="font-serif text-base font-bold text-forest-dark mb-2 leading-snug">
+                Protocolos Prácticos
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                Indicaciones terapéuticas claras y recetas específicas para actuar con total certeza clínica.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-sand-light/20 border border-sand-dark/30 p-6 rounded-2xl shadow-xs hover:shadow-sm hover:border-gold-medium/40 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-forest-dark flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <Sparkles className="w-5.5 h-5.5 text-[#113827]" />
+              </div>
+              <h3 className="font-serif text-base font-bold text-forest-dark mb-2 leading-snug">
+                Clasificación Simplificada
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                Naturaleza térmica, sabores y correspondencias de los alimentos al alcance de tu mano.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-sand-light/20 border border-sand-dark/30 p-6 rounded-2xl shadow-xs hover:shadow-sm hover:border-gold-medium/40 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-forest-dark flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <Printer className="w-5.5 h-5.5 text-[#113827]" />
+              </div>
+              <h3 className="font-serif text-base font-bold text-forest-dark mb-2 leading-snug">
+                Guías para el Paciente
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                Hojas explicativas listas para entregar que aumentan el apego y la constancia del tratamiento.
+              </p>
+            </div>
+
+            {/* Card 5 */}
+            <div className="bg-sand-light/20 border border-sand-dark/30 p-6 rounded-2xl shadow-xs hover:shadow-sm hover:border-gold-medium/40 hover:bg-white transition-all duration-300 flex flex-col items-center text-center group">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-forest-dark flex items-center justify-center shrink-0 mb-4 group-hover:scale-105 transition-transform duration-300">
+                <Zap className="w-5.5 h-5.5 text-[#113827]" />
+              </div>
+              <h3 className="font-serif text-base font-bold text-forest-dark mb-2 leading-snug">
+                Acceso de por Vida
+              </h3>
+              <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                Descarga todo el material en cualquier dispositivo para tener tu respaldo clínico permanente.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
 
       {/* 3. "Este material es para ti si..." SECTION (Deep Forest Green Background) */}
       <section className="bg-[#113827] text-white py-16 md:py-20 shadow-inner" id="who-is-it-for-section">
@@ -785,13 +886,214 @@ export default function App() {
         </div>
       </section>
 
+      {/* 3.5. NEW SECTION: ¿Qué cambiará en tu práctica clínica? */}
+      <section className="py-16 md:py-20 px-6 bg-white border-b border-sand-dark/30" id="clinical-transformation-section">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-[10.5px] md:text-xs font-mono tracking-[0.3em] uppercase text-gold-dark font-semibold">
+              Tu evolución profesional
+            </span>
+            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium mt-2 mb-4">
+              ¿Qué cambiará en tu práctica clínica?
+            </h3>
+            <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+              Con este material no solo aprenderás Dietoterapia China. También transformarás la forma en que atiendes a tus pacientes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+            
+            {/* Card 1 */}
+            <div className="flex gap-4 p-6 rounded-2xl bg-sand-light/50 border border-sand-dark/40 hover:border-gold-medium/40 hover:bg-white transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-[#113827] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-6 h-6 animate-pulse" />
+              </div>
+              <div>
+                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1.5">
+                  Atenderás con mayor confianza clínica
+                </h4>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                  Consulta protocolos claros y evita improvisar al recomendar alimentos.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="flex gap-4 p-6 rounded-2xl bg-sand-light/50 border border-sand-dark/40 hover:border-gold-medium/40 hover:bg-white transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-[#113827] flex items-center justify-center shrink-0">
+                <Clock className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1.5">
+                  Ahorrarás tiempo en cada consulta
+                </h4>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                  Encuentra rápidamente qué alimentos indicar sin buscar entre varios libros o apuntes.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="flex gap-4 p-6 rounded-2xl bg-sand-light/50 border border-sand-dark/40 hover:border-gold-medium/40 hover:bg-white transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-[#113827] flex items-center justify-center shrink-0">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1.5">
+                  Ofrecerás un servicio de mayor valor
+                </h4>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                  Entrega recomendaciones prácticas y personalizadas que tus pacientes podrán aplicar fácilmente.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="flex gap-4 p-6 rounded-2xl bg-sand-light/50 border border-sand-dark/40 hover:border-gold-medium/40 hover:bg-white transition-all duration-300 shadow-xs">
+              <div className="w-12 h-12 rounded-full bg-forest-light/10 text-[#113827] flex items-center justify-center shrink-0">
+                <BookOpen className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1.5">
+                  Tendrás una herramienta clínica siempre a mano
+                </h4>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                  Utiliza un manual diseñado para consultar durante la consulta, no para quedarse guardado en una carpeta.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 3.4. COMPARATIVE SECTION: ¿Por qué este manual es diferente? */}
+      <section className="py-16 md:py-20 px-6 bg-sand-light/30 border-b border-sand-dark/30" id="comparative-section">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-[10.5px] md:text-xs font-mono tracking-[0.3em] uppercase text-gold-dark font-semibold">
+              Comparativa clínica
+            </span>
+            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium mt-2 mb-4">
+              ¿Por qué este manual es diferente?
+            </h3>
+            <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              No fue creado para estudiar más teoría. Fue diseñado para ayudarte a tomar mejores decisiones durante tus consultas.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch" id="comparative-cards">
+            
+            {/* Left Card: Traditional Materials */}
+            <div className="bg-white border border-sand-dark/50 p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 hover:border-sand-dark">
+              <div>
+                <h4 className="font-serif text-lg md:text-xl font-bold text-gray-700 mb-6 leading-snug">
+                  La mayoría de los materiales sobre Dietoterapia China...
+                </h4>
+                <ul className="space-y-4">
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5 animate-pulse">
+                      <X className="w-3.5 h-3.5 text-red-600" />
+                    </div>
+                    <span className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                      Explican mucha teoría, pero poca aplicación práctica.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5 text-red-600" />
+                    </div>
+                    <span className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                      Obligan a buscar información entre varios libros.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5 text-red-600" />
+                    </div>
+                    <span className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                      No están pensados para consultarse durante una atención.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5 text-red-600" />
+                    </div>
+                    <span className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                      No ofrecen protocolos rápidos para recomendar alimentos.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Card: This Manual (Highlighted) */}
+            <div className="bg-[#113827]/5 border-2 border-[#113827]/45 p-6 md:p-8 rounded-2xl shadow-md flex flex-col justify-between transition-all duration-300 hover:border-[#113827]/70 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gold-medium/10 rounded-full blur-xl pointer-events-none" />
+              <div>
+                <h4 className="font-serif text-lg md:text-xl font-bold text-forest-dark mb-6 leading-snug">
+                  Este manual fue diseñado para la práctica clínica.
+                </h4>
+                <ul className="space-y-4">
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5 animate-bounce">
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
+                    </div>
+                    <span className="text-xs md:text-sm text-forest-dark font-medium leading-relaxed">
+                      Encuentra rápidamente qué alimentos recomendar.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
+                    </div>
+                    <span className="text-xs md:text-sm text-forest-dark font-medium leading-relaxed">
+                      Consulta protocolos claros según el diagnóstico energético.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
+                    </div>
+                    <span className="text-xs md:text-sm text-forest-dark font-medium leading-relaxed">
+                      Ten una herramienta lista para usar durante cada consulta.
+                    </span>
+                  </li>
+                  <li className="flex gap-3.5 items-start">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-emerald-700" />
+                    </div>
+                    <span className="text-xs md:text-sm text-forest-dark font-medium leading-relaxed">
+                      Material organizado para ahorrar tiempo y transmitir mayor confianza.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          {/* CTA Button under comparative grid */}
+          <div className="text-center mt-12">
+            <button
+              onClick={() => scrollToSection("plan-completo-card")}
+              className="inline-flex items-center justify-center px-8 py-4.5 rounded-full bg-[#113827] hover:bg-[#1b4b35] text-white font-bold text-xs md:text-sm tracking-wide uppercase transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg cursor-pointer"
+              id="comparative-cta-btn"
+            >
+              QUIERO ACCEDER AHORA ➔
+            </button>
+          </div>
+
+        </div>
+      </section>
+
       {/* 4. "Los Cinco Elementos" & Grid Section (Light Beige/Sand Background) */}
       <section className="py-16 md:py-20 px-6 bg-sand-medium/60" id="five-movements-section">
         <div className="max-w-6xl mx-auto">
           
           <div className="text-center mb-10">
             <span className="text-[10.5px] md:text-xs font-mono tracking-[0.3em] uppercase text-gold-dark font-semibold">
-              Lo que vas a aprender
+              Lo que podrás aplicar desde tu próxima consulta
             </span>
             <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight leading-tight mt-2 font-medium">
               Los Cinco Elementos aplicados a la clínica diaria
@@ -800,93 +1102,105 @@ export default function App() {
 
           {/* Interactive Elements Tabs & clinical grid (reusable customized component) */}
           <MovementTabs />
-
+ 
         </div>
       </section>
-
-      {/* 5. "Contenido dentro del manual" SECTION */}
-      <section className="py-16 md:py-20 px-6 bg-white border-y border-sand-dark/40" id="guide-contents-section">
-        <div className="max-w-4xl mx-auto">
-          
-          <div className="text-center mb-12">
-            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium">
-              Qué encontrarás dentro del manual
+ 
+      {/* 4.5. NEW SECTION: Así utilizarás este manual en cada consulta */}
+      <section className="py-16 md:py-20 px-6 bg-sand-medium/20 border-b border-sand-dark/20" id="consultation-timeline-section">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[10.5px] md:text-xs font-mono tracking-[0.3em] uppercase text-gold-dark font-semibold">
+              Metodología de trabajo
+            </span>
+            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium mt-2 mb-4">
+              Así utilizarás este manual en cada consulta
             </h3>
+            <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Una herramienta práctica diseñada para acompañarte antes, durante y después de atender a tus pacientes.
+            </p>
           </div>
-
-          {/* Elegant 5 numbered cards list */}
-          <div className="space-y-4" id="guide-contents-list">
-            
-            <div className="flex flex-col sm:flex-row items-start gap-4 p-6 rounded-xl bg-sand-light border border-sand-dark/50 hover:border-gold-medium/60 transition-colors duration-300 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-[#113827] text-white flex items-center justify-center font-bold text-sm shrink-0 font-mono">
-                1
-              </div>
-              <div>
-                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Fundamentos de la Dietoterapia China
-                </h4>
-                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Principios bioenergéticos simplificados para consultar rápidamente las propiedades terapéuticas de los alimentos comunes durante tus consultas.
+ 
+          {/* Timeline Wrapper */}
+          <div className="relative" id="timeline-container">
+            {/* Desktop Horizontal Connector Line */}
+            <div className="hidden md:block absolute top-[32px] left-[12.5%] right-[12.5%] h-0.5 bg-sand-dark/40 z-0" />
+ 
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
+              
+              {/* Paso 1 */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left group" id="timeline-step-1">
+                <div className="flex flex-col items-center md:items-start mb-4">
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-sand-dark flex items-center justify-center font-bold text-lg text-forest-dark shadow-sm group-hover:border-gold-medium group-hover:bg-sand-light transition-all duration-300 shrink-0 mb-4 z-10">
+                    1
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-wider text-gold-dark uppercase font-semibold">Paso 1</span>
+                    <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mt-1 leading-snug">
+                      Antes de la consulta
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed md:pr-4">
+                  Revisa rápidamente protocolos y alimentos para preparar cada caso.
                 </p>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 p-6 rounded-xl bg-sand-light border border-sand-dark/50 hover:border-gold-medium/60 transition-colors duration-300 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-[#113827] text-white flex items-center justify-center font-bold text-sm shrink-0 font-mono">
-                2
-              </div>
-              <div>
-                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Los Cinco Elementos, Sabores y Naturaleza Térmica
-                </h4>
-                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Clasifica y selecciona alimentos con coherencia clínica y rapidez según las 5 naturalezas térmicas, sabores tradicionales y tropismo de canal.
+ 
+              {/* Paso 2 */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left group" id="timeline-step-2">
+                <div className="flex flex-col items-center md:items-start mb-4">
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-sand-dark flex items-center justify-center font-bold text-lg text-forest-dark shadow-sm group-hover:border-gold-medium group-hover:bg-sand-light transition-all duration-300 shrink-0 mb-4 z-10">
+                    2
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-wider text-gold-dark uppercase font-semibold">Paso 2</span>
+                    <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mt-1 leading-snug">
+                      Durante la consulta
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed md:pr-4">
+                  Consulta qué alimentos recomendar según el diagnóstico energético del paciente.
                 </p>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 p-6 rounded-xl bg-sand-light border border-sand-dark/50 hover:border-gold-medium/60 transition-colors duration-300 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-[#113827] text-white flex items-center justify-center font-bold text-sm shrink-0 font-mono">
-                3
-              </div>
-              <div>
-                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Diagnóstico Energético y Orientación Dietética
-                </h4>
-                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Transforma un diagnóstico tradicional de MTC (Deficiencias, Calor, Frío, Estancamientos) en recomendaciones alimentarias inmediatas y sin improvisar.
+ 
+              {/* Paso 3 */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left group" id="timeline-step-3">
+                <div className="flex flex-col items-center md:items-start mb-4">
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-sand-dark flex items-center justify-center font-bold text-lg text-forest-dark shadow-sm group-hover:border-gold-medium group-hover:bg-sand-light transition-all duration-300 shrink-0 mb-4 z-10">
+                    3
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-wider text-gold-dark uppercase font-semibold">Paso 3</span>
+                    <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mt-1 leading-snug">
+                      Al finalizar
+                    </h4>
+                  </div>
+                </div>
+                <p className="text-xs md:text-sm text-gray-600 leading-relaxed md:pr-4">
+                  Entrega recomendaciones claras, prácticas y fáciles de seguir.
                 </p>
               </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 p-6 rounded-xl bg-sand-light border border-sand-dark/50 hover:border-gold-medium/60 transition-colors duration-300 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-[#113827] text-white flex items-center justify-center font-bold text-sm shrink-0 font-mono">
-                4
-              </div>
-              <div>
-                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Protocolos y Recetas Listas para Consultar
-                </h4>
+ 
+              {/* Paso 4 */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left group" id="timeline-step-4">
+                <div className="flex flex-col items-center md:items-start mb-4">
+                  <div className="w-16 h-16 rounded-full bg-white border-2 border-sand-dark flex items-center justify-center font-bold text-lg text-forest-dark shadow-sm group-hover:border-gold-medium group-hover:bg-sand-light transition-all duration-300 shrink-0 mb-4 z-10">
+                    4
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-wider text-gold-dark uppercase font-semibold">Paso 4</span>
+                    <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mt-1 leading-snug">
+                      En el seguimiento
+                    </h4>
+                  </div>
+                </div>
                 <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Accede a protocolos y recetas terapéuticas formuladas y listas para consultar durante tus consultas para indicar con total seguridad.
+                  Resuelve nuevas dudas en segundos utilizando el manual como referencia clínica.
                 </p>
               </div>
+ 
             </div>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 p-6 rounded-xl bg-sand-light border border-sand-dark/50 hover:border-gold-medium/60 transition-colors duration-300 shadow-sm">
-              <div className="w-10 h-10 rounded-full bg-[#113827] text-white flex items-center justify-center font-bold text-sm shrink-0 font-mono">
-                5
-              </div>
-              <div>
-                <h4 className="font-serif text-base md:text-lg font-bold text-forest-dark mb-1">
-                  Planificación y Referencia Rápida para el Paciente
-                </h4>
-                <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                  Modelos prácticos y guías rápidas listas para imprimir que te permiten entregar recomendaciones claras de forma rápida y profesional, facilitando el apego al tratamiento.
-                </p>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -948,7 +1262,7 @@ export default function App() {
               </div>
               <div className="pt-2">
                 <h4 className="font-serif text-lg font-bold text-forest-dark mb-2">
-                  Tarjetas de Consulta Rápida para Recomendar Alimentos con Seguridad
+                  Tarjetas de Consulta Rápida para Recomendar Alimentos con Certeza
                 </h4>
                 <p className="text-xs text-gray-600 leading-relaxed mb-6">
                   Tarjetas en formato digital listas para imprimir (tamaño A6) con las principales síndromes clínicos de la MTC y la lista simplificada de sus alimentos indicados y contraindicados.
@@ -1017,6 +1331,63 @@ export default function App() {
               </div>
             </div>
 
+            {/* Bono 5 */}
+            <div className="bg-white p-6 rounded-2xl border-2 border-gold-light/40 shadow-sm relative flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div className="absolute -top-3 left-6 bg-gold-medium text-white px-3 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest font-bold">
+                Bono 5
+              </div>
+              <div className="pt-2">
+                <h4 className="font-serif text-lg font-bold text-forest-dark mb-2">
+                  Caldos y Fondos Terapéuticos (17 páginas)
+                </h4>
+                <p className="text-xs text-gray-600 leading-relaxed mb-6">
+                  6 caldos base (uno por cada patrón) + 3 caldos especiales (resfriado, recuperación/posparto, digestivo) + guía paso a paso para transformar cualquier caldo en una comida completa en 15 minutos + pautas detalladas de conservación y seguridad alimentaria.
+                </p>
+              </div>
+              <div className="border-t border-sand-medium pt-3 mt-auto flex items-center justify-between">
+                <span className="text-xs text-gray-500 font-mono">Valor individual:</span>
+                <span className="text-xs font-bold text-red-700 font-mono line-through">{currency.symbol}{currency.bono5} {currency.code}</span>
+              </div>
+            </div>
+
+            {/* Bono 6 */}
+            <div className="bg-white p-6 rounded-2xl border-2 border-gold-light/40 shadow-sm relative flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div className="absolute -top-3 left-6 bg-gold-medium text-white px-3 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest font-bold">
+                Bono 6
+              </div>
+              <div className="pt-2">
+                <h4 className="font-serif text-lg font-bold text-forest-dark mb-2">
+                  Atlas de Diagnóstico por la Lengua (18 páginas)
+                </h4>
+                <p className="text-xs text-gray-600 leading-relaxed mb-6">
+                  12 tablas ilustradas con diagramas vectoriales originales de la lengua (diseñados por código, sin fotos de stock) detallando color, forma, saburra, grietas y manchas. Cada una incluye su patrón energético, síntomas asociados y orientación dietética, además de una tabla comparativa y advertencias sobre los límites de la autoevaluación.
+                </p>
+              </div>
+              <div className="border-t border-sand-medium pt-3 mt-auto flex items-center justify-between">
+                <span className="text-xs text-gray-500 font-mono">Valor individual:</span>
+                <span className="text-xs font-bold text-red-700 font-mono line-through">{currency.symbol}{currency.bono6} {currency.code}</span>
+              </div>
+            </div>
+
+            {/* Bono 7 */}
+            <div className="bg-white p-6 rounded-2xl border-2 border-gold-light/40 shadow-sm relative flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div className="absolute -top-3 left-6 bg-gold-medium text-white px-3 py-0.5 rounded text-[10px] font-mono uppercase tracking-widest font-bold">
+                Bono 7
+              </div>
+              <div className="pt-2">
+                <h4 className="font-serif text-lg font-bold text-forest-dark mb-2">
+                  Combinaciones Alimentarias a Evitar (14 páginas)
+                </h4>
+                <p className="text-xs text-gray-600 leading-relaxed mb-6">
+                  Origen histórico del concepto, principios generales (choque térmico, sobrecarga funcional), combinaciones tradicionales específicas y combinaciones a evitar según el patrón personal. Incluye combinaciones positivas recomendadas, mitos desmontados, casos prácticos y preguntas frecuentes abordados con un enfoque honesto (tradición cultural frente a ciencia verificada).
+                </p>
+              </div>
+              <div className="border-t border-sand-medium pt-3 mt-auto flex items-center justify-between">
+                <span className="text-xs text-gray-500 font-mono">Valor individual:</span>
+                <span className="text-xs font-bold text-red-700 font-mono line-through">{currency.symbol}{currency.bono7} {currency.code}</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -1050,35 +1421,8 @@ export default function App() {
               
               <div>
                 {/* Header Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-[10px] tracking-widest font-bold text-gray-700 uppercase mb-6">
-                  <span>⭐</span> PLAN BÁSICO
-                </div>
-
-                {/* Prices */}
-                <div className="mb-6 flex flex-col items-start" id="price-stack-basico">
-                  {/* Badge */}
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold tracking-wider mb-2 uppercase border border-emerald-200">
-                    Ahorras más del 80%
-                  </div>
-                  {/* Original Price */}
-                  <span className="text-xl font-bold text-red-500 line-through tracking-tight mb-1">
-                    {currency.symbol}{currency.basicoOriginal} {currency.code}
-                  </span>
-                  {/* Current Price */}
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl md:text-6xl font-serif font-black tracking-tight text-[#113827] leading-none">
-                      {currency.symbol}{currency.basico}
-                    </span>
-                    {currency.code !== "USD" && (
-                      <span className="text-sm font-sans text-gray-500">
-                        (~ $5 USD)
-                      </span>
-                    )}
-                  </div>
-                  {/* Bottom Label */}
-                  <span className="text-xs text-gray-500 mt-2 font-medium tracking-wide">
-                    pago único ({currency.code})
-                  </span>
+                <div className="text-2xl md:text-3xl tracking-wider font-black text-gray-800 uppercase mb-6">
+                  PLAN BÁSICO
                 </div>
 
                 {/* Features List */}
@@ -1100,10 +1444,33 @@ export default function App() {
                     <span>Sin soporte prioritario de dudas por correo electrónico</span>
                   </div>
                 </div>
+
+                {/* Prices - Moved below Features List and centered */}
+                <div className="mt-4 mb-3 pt-4 border-t border-gray-100 flex flex-col items-center justify-center text-center w-full" id="price-stack-basico">
+                  {/* Original Price */}
+                  <span className="text-sm md:text-base font-bold text-red-500 line-through tracking-tight mb-1">
+                    De {currency.symbol}{currency.basicoOriginal} por solo
+                  </span>
+                  {/* Current Price */}
+                  <div className="flex items-baseline justify-center gap-2">
+                    <span className="text-5xl md:text-6xl font-serif font-black tracking-tight text-[#113827] leading-none">
+                      {currency.symbol}{currency.basico}
+                    </span>
+                    {currency.code !== "USD" && (
+                      <span className="text-sm font-sans text-gray-500">
+                        (~ $5 USD)
+                      </span>
+                    )}
+                  </div>
+                  {/* Bottom Label */}
+                  <span className="text-xs text-gray-500 mt-2 font-medium tracking-wide">
+                    pago único ({currency.code})
+                  </span>
+                </div>
               </div>
 
               {/* Action Button */}
-              <div className="mt-8 pt-6 border-t border-gray-100">
+              <div className="mt-4 pt-4 border-t border-gray-100">
                 <button
                   onClick={() => {
                     setShowUpsellModal(true);
@@ -1121,28 +1488,78 @@ export default function App() {
             <div className="bg-white text-gray-800 rounded-3xl border-4 border-gold-medium p-6 md:p-8 flex flex-col justify-between shadow-2xl relative transition-all duration-300 hover:shadow-gold-medium/15 text-left scale-100 lg:scale-[1.03] z-10" id="plan-completo-card">
               
               {/* Recommended Corner Ribbon / Badge */}
-              <div className="absolute -top-3.5 right-6 bg-gold-medium text-[#113827] px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest flex items-center gap-1 shadow-md border border-white">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gold-medium text-[#113827] px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest flex items-center gap-1 shadow-md border border-white whitespace-nowrap">
                 <span>🎗</span> RECOMENDADO
               </div>
 
               <div>
                 {/* Header Badge */}
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] tracking-widest font-extrabold text-emerald-800 uppercase mb-6">
-                  <span>⚡</span> PLAN COMPLETO
+                <div className="text-2xl md:text-3xl tracking-wider font-black text-[#113827] uppercase mb-6">
+                  PLAN COMPLETO
                 </div>
 
-                {/* Prices */}
-                <div className="mb-6 flex flex-col items-start" id="price-stack-completo">
-                  {/* Badge */}
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold tracking-wider mb-2 uppercase border border-emerald-200">
-                    Ahorras más del 75%
+
+                {/* Features List */}
+                <div className="space-y-4 pt-4 border-t border-gray-100">
+
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
+                    <span>Acceso <strong>Vitalicio</strong> permanente (descarga para siempre)</span>
                   </div>
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
+                    <span>Actualizaciones <strong>100% gratis</strong> de por vida</span>
+                  </div>
+                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700 font-sans">
+                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
+                    <span>Soporte prioritario de dudas por correo electrónico</span>
+                  </div>
+
+                  {/* 7 Bonos Exclusivos (without box, using same style and font, flattened list) */}
+                  <div className="space-y-2.5 pt-0.5">
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 1:</strong> Tarjetas de Consulta Rápida (Síndromes y Alimentos)</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 2:</strong> Guía de Recetas de la Medicina Tradicional China</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 3:</strong> Calendario Estacional según los Cinco Movimientos</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 4:</strong> Plantillas de Anamnesis y Seguimiento Nutricional</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 5:</strong> Recetario de Caldos y Fondos Terapéuticos</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 6:</strong> Atlas de Diagnóstico Clínico por la Lengua</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
+                      <span className="shrink-0 mt-0.5">🎁</span>
+                      <span><strong>BONO 7:</strong> Combinaciones Alimentarias a Evitar en MTC</span>
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-emerald-900 font-semibold bg-emerald-50/80 p-3 rounded-xl border border-emerald-150 leading-relaxed mt-2">
+                    💡 Todo lo necesario para orientar desde tu primera consulta.
+                  </div>
+                </div>
+
+                {/* Prices - Moved below Features List and centered */}
+                <div className="mt-4 mb-3 pt-4 border-t border-gray-100 flex flex-col items-center justify-center text-center w-full" id="price-stack-completo">
                   {/* Original Price */}
-                  <span className="text-xl font-bold text-red-500 line-through tracking-tight mb-1">
-                    {currency.symbol}{currency.completoOriginal} {currency.code}
+                  <span className="text-sm md:text-base font-bold text-red-500 line-through tracking-tight mb-1">
+                    De {currency.symbol}{currency.completoOriginal} por solo
                   </span>
                   {/* Current Price */}
-                  <div className="flex items-baseline gap-2">
+                  <div className="flex items-baseline justify-center gap-2">
                     <span className="text-5xl md:text-6xl font-serif font-black tracking-tight text-[#113827] leading-none">
                       {currency.symbol}{currency.completo}
                     </span>
@@ -1157,58 +1574,10 @@ export default function App() {
                     pago único ({currency.code})
                   </span>
                 </div>
-
-
-                {/* Features List */}
-                <div className="space-y-4 pt-4 border-t border-gray-100">
-                  <div className="text-xs font-bold text-forest-dark uppercase tracking-wider mb-2">
-                    ✓ TODO LO DEL PLAN BÁSICO Y ADEMÁS:
-                  </div>
-                  <div className="text-xs text-emerald-900 font-semibold bg-emerald-50/80 p-3 rounded-xl border border-emerald-150 leading-relaxed">
-                    💡 Todo lo necesario para sentirte más seguro al orientar a tus pacientes desde la primera consulta.
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
-                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
-                    <span>Acceso <strong>Vitalicio</strong> permanente (descarga para siempre)</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
-                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
-                    <span>Actualizaciones <strong>100% gratis</strong> de por vida</span>
-                  </div>
-                  <div className="flex items-start gap-2.5 text-xs md:text-sm text-gray-700">
-                    <span className="text-emerald-600 shrink-0 mt-0.5">✔</span>
-                    <span>Soporte prioritario de dudas por correo electrónico</span>
-                  </div>
-                </div>
-
-                {/* Inside card box for bonuses (moved below the list) */}
-                <div className="bg-emerald-50/60 rounded-2xl border border-emerald-100 p-4 mt-5 text-left">
-                  <div className="text-xs font-extrabold text-emerald-900 uppercase tracking-wide mb-3 flex items-center gap-1">
-                    <span>🎁</span> 4 BONOS EXCLUSIVOS ({currency.symbol}{currency.bonosTotal} {currency.code}) — 100% GRATIS:
-                  </div>
-                  <div className="space-y-2.5 text-[11px] md:text-xs text-gray-700">
-                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                      <span className="text-emerald-600 shrink-0">✓</span>
-                      <span>1. Tarjetas de Consulta Rápida (Síndromes y Alimentos)</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                      <span className="text-emerald-600 shrink-0">✓</span>
-                      <span>2. Guía de Recetas de la Medicina Tradicional China</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                      <span className="text-emerald-600 shrink-0">✓</span>
-                      <span>3. Calendario Estacional según los Cinco Movimientos</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-emerald-950 font-medium">
-                      <span className="text-emerald-600 shrink-0">✓</span>
-                      <span>4. Plantillas de Anamnesis y Seguimiento Nutricional</span>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* Action Button */}
-              <div className="mt-8 pt-6 border-t border-gray-100">
+              <div className="mt-4 pt-4 border-t border-gray-100">
                 <button
                   onClick={() => {
                     window.open("https://pay.hotmart.com/O106596188M?off=05w6pih2&checkoutMode=10", "_blank");
@@ -1235,105 +1604,7 @@ export default function App() {
       </section>
 
       {/* 10. "Lo que recibes de inmediato" SECTION */}
-      <section className="py-16 md:py-20 px-6 bg-white" id="immediate-delivery-section">
-        <div className="max-w-5xl mx-auto">
-          
-          <div className="text-center mb-12">
-            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-dark tracking-tight font-medium">
-              Lo que recibes inmediatamente
-            </h3>
-          </div>
-
-          {/* 7 Cards Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto" id="benefits-grid">
-            
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <BookOpen className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Manual Completo</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Consulta rápidamente qué alimentos recomendar según el diagnóstico energético.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <Wrench className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Herramientas Prácticas</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Toma decisiones con mayor seguridad durante tus consultas.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <Download className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Tarjetas en PDF</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Encuentra en segundos los alimentos indicados para cada síndrome.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Guía de Recetas</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Entrega recomendaciones prácticas sin tener que improvisar.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <Infinity className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Acceso de por Vida</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Descarga tus archivos y consúltalos de forma permanente siempre que lo requieras, sin vencimientos.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <RefreshCw className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Actualizaciones Gratis</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Recibe futuras adiciones, mejoras y material complementario sin tener que pagar un solo centavo de más.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 bg-sand-light border border-sand-dark/60 rounded-xl flex items-start gap-3 lg:col-span-3 lg:max-w-md lg:mx-auto lg:w-full">
-              <div className="p-2 bg-gold-medium/10 text-gold-dark rounded-lg shrink-0">
-                <Monitor className="w-5 h-5" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs md:text-sm text-forest-dark mb-1">Compatibilidad Total</h5>
-                <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed">
-                  Estudia cómodamente desde tu celular, tableta, laptop o computadora de escritorio con archivos PDF perfectamente optimizados.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* SECTION REMOVED AND MOVED UPWARDS */}
 
       {/* 11. GARANTÍA INCONDICIONAL SECTION */}
       <section className="py-16 md:py-20 px-6 bg-sand-medium/40 border-y border-sand-dark/50" id="guarantee-section">
@@ -1393,13 +1664,13 @@ export default function App() {
 
           <div className="space-y-4 text-xs md:text-sm text-sand-light/90 max-w-2xl leading-relaxed text-justify sm:text-center" id="about-us-paragraphs">
             <p>
-              Ayudamos a los profesionales de la Medicina China a sentirse más seguros al aplicar sus conocimientos en la práctica clínica diaria.
+              Ayudamos a los profesionales de la Medicina China a ganar total confianza al aplicar sus conocimientos en la práctica clínica diaria.
             </p>
             <p>
               Nuestro principal propósito y misión es decodificar y simplificar el conocimiento ancestral de la Medicina Tradicional China para transformarlo en materiales clínicos sumamente didácticos, prácticos y directamente aplicables a tu consulta del día a día.
             </p>
             <p>
-              Diseñamos herramientas de estudio integrales que permiten a los terapeutas y profesionales sentirse más seguros, confiados y plenamente preparados para diagnosticar y ofrecer indicaciones de primer nivel.
+              Diseñamos herramientas de estudio integrales que permiten a los terapeutas y profesionales sentirse con mayor certeza, confianza y plenamente preparados para diagnosticar y ofrecer indicaciones de primer nivel.
             </p>
             <p>
               Si deseas profundizar tus conocimientos técnicos y emplear la Medicina China con un nivel superior de estrategia, coherencia y solidez en beneficio de tus pacientes, estás definitivamente en el lugar correcto.
@@ -1506,15 +1777,27 @@ export default function App() {
                   </div>
                   <div className="flex items-start gap-1.5 text-forest-medium font-medium">
                     <span className="text-gold-medium font-bold shrink-0">✔</span>
-                    <span><strong>BONO 2:</strong> Guía de Recetas de la MTC (PDF)</span>
+                    <span><strong>BONO 2:</strong> Guía de Recetas de la Medicina Tradicional China</span>
                   </div>
                   <div className="flex items-start gap-1.5 text-forest-medium font-medium">
                     <span className="text-gold-medium font-bold shrink-0">✔</span>
-                    <span><strong>BONO 3:</strong> Calendario Estacional según los 5 Movimientos</span>
+                    <span><strong>BONO 3:</strong> Calendario Estacional según los Cinco Movimientos</span>
                   </div>
                   <div className="flex items-start gap-1.5 text-forest-medium font-medium">
                     <span className="text-gold-medium font-bold shrink-0">✔</span>
-                    <span><strong>BONO 4:</strong> Plantillas de Anamnesis y Fichas de Consulta</span>
+                    <span><strong>BONO 4:</strong> Plantillas de Anamnesis y Seguimiento Nutricional</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 5:</strong> Recetario de Caldos y Fondos Terapéuticos</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 6:</strong> Atlas de Diagnóstico Clínico por la Lengua</span>
+                  </div>
+                  <div className="flex items-start gap-1.5 text-forest-medium font-medium">
+                    <span className="text-gold-medium font-bold shrink-0">✔</span>
+                    <span><strong>BONO 7:</strong> Combinaciones Alimentarias a Evitar en MTC</span>
                   </div>
                 </div>
               </div>

@@ -77,43 +77,43 @@ export default function MovementTabs() {
   const learnings = [
     {
       num: "01",
-      text: "Clasifica con precisión los alimentos según su naturaleza térmica (Frío, Fresco, Neutro, Tibio, Caliente) y sus 5 Sabores primarios.",
+      text: "Recomienda con precisión clasificando los alimentos según su naturaleza térmica y sus cinco sabores primarios.",
     },
     {
       num: "02",
-      text: "Relaciona con solidez cada alimento con los Cinco Elementos para equilibrar las funciones orgánicas de tus pacientes.",
+      text: "Equilibra las funciones orgánicas vinculando de forma instantánea cada alimento con su elemento correspondiente.",
     },
     {
       num: "03",
-      text: "Identifica rápidamente los alimentos más adecuados para cada síndrome energético.",
+      text: "Resuelve dudas rápido identificando al instante los alimentos ideales para cada síndrome energético.",
     },
     {
       num: "04",
-      text: "Evita recomendar alimentos que puedan agravar el desequilibrio energético del paciente.",
+      text: "Evita errores clínicos descartando alimentos que puedan agravar el desequilibrio de tu paciente.",
     },
     {
       num: "05",
-      text: "Estructura recomendaciones dietéticas prácticas, realistas y fáciles de seguir para el paciente.",
+      text: "Mejora tus resultados terapéuticos creando pautas sencillas y fáciles de aplicar en el día a día.",
     },
     {
       num: "06",
-      text: "Guía y educa al paciente con un lenguaje sencillo, facilitando la comprensión y el apego al tratamiento.",
+      text: "Incrementa la adherencia del paciente usando explicaciones claras, lógicas y sin tecnicismos.",
     },
     {
       num: "07",
-      text: "Utiliza estratégicamente la alimentación para potenciar y acelerar los efectos de la acupuntura en consulta.",
+      text: "Acelera los efectos de la acupuntura combinándola estratégicamente con la alimentación indicada.",
     },
     {
       num: "08",
-      text: "Adapta la alimentación de forma estacional para prevenir desequilibrios típicos de cada época del año.",
+      text: "Previene desequilibrios estacionales ajustando la dieta según la época del año de forma lógica.",
     },
     {
       num: "09",
-      text: "Aplica recetas terapéuticas específicas y listas para nutrir la Sangre, el Qi, el Yin o el Yang.",
+      text: "Logra cambios profundos usando recetas terapéuticas listas para nutrir Sangre, Qi, Yin o Yang.",
     },
     {
       num: "10",
-      text: "Transforma la Dietoterapia en un potente factor de diferenciación que aumentará el valor de tus consultas.",
+      text: "Dibuja tu valor diferenciador y eleva el prestigio de tu consulta aplicando Dietoterapia seria.",
     },
   ];
 
