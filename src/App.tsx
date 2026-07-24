@@ -391,10 +391,6 @@ export default function App() {
               />
             </picture>
 
-            {/* 50% OFF Stamp */}
-            <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
-              ¡50% OFF!
-            </div>
             {/* Soft decorative shadow overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
@@ -543,10 +539,6 @@ export default function App() {
               />
             </picture>
             
-            {/* 50% OFF Stamp */}
-            <div className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg uppercase tracking-wider select-none transform rotate-12 z-20">
-              ¡50% OFF!
-            </div>
             {/* Soft decorative shadow overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
@@ -1036,7 +1028,7 @@ export default function App() {
                 </h4>
                 <ul className="space-y-4">
                   <li className="flex gap-3.5 items-start">
-                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5 animate-bounce">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3.5 h-3.5 text-emerald-700" />
                     </div>
                     <span className="text-xs md:text-sm text-forest-dark font-medium leading-relaxed">
